@@ -1,0 +1,25 @@
+<div>
+  <p>Enter your feedback</p>
+  <textarea cols="100" rows="10" [(ngModel)]="feedbackText"></textarea>
+  <p></p>
+  <form>
+    <label class="radio-inline">
+      <input
+        [(ngModel)]="radioButton"
+        type="radio"
+        name="optradio"
+        value="PRIVATE"
+      />Private feedback
+    </label>
+    <label class="radio-inline">
+      <input
+        [(ngModel)]="radioButton"
+        type="radio"
+        name="optradio"
+        value="PUBLIC"
+      />Public feedback
+    </label>
+  </form>
+  <p></p>
+  <button (click)="sendFeedback()">Send feedback</button>
+</div>
