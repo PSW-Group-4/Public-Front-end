@@ -1,0 +1,60 @@
+.feedbackSection {
+  overflow-y: scroll;
+  background-color: lightcyan;
+  margin: auto;
+  width: 70%;
+  height: 400px;
+  padding: 0px 20px 20px 20px;
+}
+
+.feedbackSection th {
+  padding: 10px 0px;
+  text-align: center;
+  vertical-align: middle;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: lightcyan;
+}
+.feedbackSection td {
+  padding: 10px;
+}
+
+.feedbackSection td:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.feedbackSection td:last-child {
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.feedbackSection tbody > tr:nth-child(even) {
+  border-radius: 20px;
+  background-color: white;
+}
+.feedbackSection tbody > tr:nth-child(odd) {
+  border-radius: 20px;
+  background-color: lightgreen;
+}
+
+.feedbackSection table {
+  width: 100%;
+  margin: auto;
+  border-spacing: 0;
+}
+
+.feedbackSection tbody > tr:hover {
+  background-color: green;
+  box-shadow: 1px 1px 8px green;
+}
+
+.dateWidth {
+  width: 10%;
+}
+.patientWidith {
+  width: 20%;
+}
+.feedbackTextWidith {
+  width: 70%;
+}
