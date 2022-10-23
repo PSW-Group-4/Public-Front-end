@@ -37,23 +37,19 @@ p {
   -webkit-box-direction: normal;
   flex-direction: row;
 }
-.login-form .action button {
+.login-form .action a {
   width: 100%;
-  border: none;
-  padding: 18px;
-  cursor: pointer;
-  text-transform: uppercase;
-  background: lightgray;
-  color: black;
-  letter-spacing: 0.2px;
-  outline: 0;
 }
-.login-form .action button:hover:nth-child(1) {
+
+.login-form .action a .register {
+  background: lightgrey;
+}
+.login-form .action a .register:hover {
   background-color: grey;
 }
-.login-form .action button:nth-child(2) {
+.login-form .action a .login {
   background: lightgreen;
 }
-.login-form .action button:nth-child(2):hover {
-  background-color: green;
+.login-form .action a .login:hover {
+  background-color: greenyellow;
 }

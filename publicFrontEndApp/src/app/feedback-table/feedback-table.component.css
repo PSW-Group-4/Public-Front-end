@@ -5,6 +5,7 @@
   width: 70%;
   height: 400px;
   padding: 0px 20px 20px 20px;
+  border-radius: 20px 0px 0px 20px;
 }
 
 .feedbackSection th {
@@ -45,8 +46,8 @@
 }
 
 .feedbackSection tbody > tr:hover {
-  background-color: green;
-  box-shadow: 1px 1px 8px green;
+  background-color: greenyellow;
+  box-shadow: 1px 1px 8px greenyellow;
 }
 
 .dateWidth {

@@ -3,3 +3,16 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
 }
+
+button {
+  width: 100%;
+  border: none;
+  padding: 18px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+  outline: 0;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
