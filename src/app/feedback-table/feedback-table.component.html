@@ -6,7 +6,9 @@
 
     <tbody>
       <tr *ngFor="let feedback of feedbacksPublics">
-        <td class="dateWidth">{{ feedback.date }}</td>
+        <td class="dateWidth">
+          {{ feedback.date | date: "d/M/yyyy HH:mm" }}
+        </td>
         <td class="patientWidith">{{ feedback.patient.name }}</td>
         <td class="feedbackTextWidith">
           {{ feedback.text }}
