@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateFeedbackComponent } from './create-feedback/create-feedback.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { LoginComponent } from './login/login.component';
 import { PatientHomeComponent } from './patient-home/patient-home.component';
 
+
 const routes: Routes = [
-  {path: '', component: LandingPageComponent },
+  { path: '', component: LandingPageComponent },
+  {path: 'loginPage', component: LoginComponent },
   {path: 'landingPage', component: LandingPageComponent },
   {
     path: 'patientHome', component: PatientHomeComponent,
@@ -19,4 +22,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [CreateFeedbackComponent,LandingPageComponent,PatientHomeComponent]
+export const routingComponents = [CreateFeedbackComponent,LandingPageComponent,PatientHomeComponent,LoginComponent]
