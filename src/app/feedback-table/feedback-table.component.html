@@ -5,54 +5,13 @@
     <th>Feedback</th>
 
     <tbody>
-      <tr>
-        <td class="dateWidth">01.11.2012.</td>
-        <td class="patientWidith">PERA GAS</td>
-        <td class="feedbackTextWidith">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora nulla
-          hic et molestias asperiores reprehenderit. Nemo eum beatae maxime
-          sequi consequuntur, minima ad iure tempore corporis, dolores, magnam
-          provident obcaecati.
+      <tr *ngFor="let feedback of feedbacksPublics">
+        <td class="dateWidth">
+          {{ feedback.date | date: "d/M/yyyy HH:mm" }}
         </td>
-      </tr>
-      <tr>
-        <td class="dateWidth">01.11.2012.</td>
-        <td class="patientWidith">PERA GAS</td>
+        <td class="patientWidith">{{ feedback.patientFullname }}</td>
         <td class="feedbackTextWidith">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora nulla
-          hic et molestias asperiores reprehenderit. Nemo eum beatae maxime
-          sequi consequuntur, minima ad iure tempore corporis, dolores, magnam
-          provident obcaecati.
-        </td>
-      </tr>
-      <tr>
-        <td class="dateWidth">01.11.2012.</td>
-        <td class="patientWidith">PERA GAS</td>
-        <td class="feedbackTextWidith">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora nulla
-          hic et molestias asperiores reprehenderit. Nemo eum beatae maxime
-          sequi consequuntur, minima ad iure tempore corporis, dolores, magnam
-          provident obcaecati.
-        </td>
-      </tr>
-      <tr>
-        <td class="dateWidth">01.11.2012.</td>
-        <td class="patientWidith">PERA GAS</td>
-        <td class="feedbackTextWidith">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora nulla
-          hic et molestias asperiores reprehenderit. Nemo eum beatae maxime
-          sequi consequuntur, minima ad iure tempore corporis, dolores, magnam
-          provident obcaecati.
-        </td>
-      </tr>
-      <tr>
-        <td class="dateWidth">01.11.2012.</td>
-        <td class="patientWidith">PERA GAS</td>
-        <td class="feedbackTextWidith">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora nulla
-          hic et molestias asperiores reprehenderit. Nemo eum beatae maxime
-          sequi consequuntur, minima ad iure tempore corporis, dolores, magnam
-          provident obcaecati.
+          {{ feedback.text }}
         </td>
       </tr>
     </tbody>

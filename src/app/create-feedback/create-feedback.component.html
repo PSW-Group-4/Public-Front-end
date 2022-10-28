@@ -1,25 +1,18 @@
 <div>
+  <p></p>
   <p>Enter your feedback</p>
   <textarea cols="100" rows="10" [(ngModel)]="feedbackText"></textarea>
   <p></p>
-  <form>
-    <label class="radio-inline">
-      <input
-        [(ngModel)]="radioButton"
-        type="radio"
-        name="optradio"
-        value="PRIVATE"
-      />Private feedback
-    </label>
-    <label class="radio-inline">
-      <input
-        [(ngModel)]="radioButton"
-        type="radio"
-        name="optradio"
-        value="PUBLIC"
-      />Public feedback
-    </label>
-  </form>
+  <div>
+    <input type="checkbox" id="anonymous" [(ngModel)]="isCheckedAnonymous" />
+    <label for="anonymous">Anonymous</label>
+    <p></p>
+    <input type="checkbox" id="public" [(ngModel)]="isCheckedPublic" />
+    <label for="public">Public</label>
+  </div>
+
   <p></p>
   <button (click)="sendFeedback()">Send feedback</button>
+  <p></p>
+  <p>{{ EnterAllFieldsCorrectlyMessage }}</p>
 </div>
