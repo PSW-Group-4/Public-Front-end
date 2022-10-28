@@ -32,7 +32,7 @@ export class CreateFeedbackComponent implements OnInit {
     var FeedbackRequestDto: any = {}
     FeedbackRequestDto.text = this.feedbackText;
     FeedbackRequestDto.isAnonimous = this.isCheckedAnonymous;
-    FeedbackRequestDto.isPublic = this.isCheckedPublic;
+    FeedbackRequestDto.isDesiredPublic = this.isCheckedPublic;
 
     this.feedbackService.createFeedback(FeedbackRequestDto).subscribe(res => {
       console.log(res);
