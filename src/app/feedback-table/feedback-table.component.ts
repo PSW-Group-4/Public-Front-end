@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FeedbackPatientResponseDto } from '../model/feedbackPublic.model';
+import { FeedbackPatientResponseDto } from '../model/feedbackPatientResponseDto.model';
 import { FeedbackService } from './../Services/feedback.service';
 
 @Component({

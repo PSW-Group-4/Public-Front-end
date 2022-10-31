@@ -2,23 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { FeedbackPatientResponseDto } from '../model/feedbackPublic.model';
+import { FeedbackPatientResponseDto } from '../model/feedbackPatientResponseDto.model';
+import { ConstSettings } from '../constSettings';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FeedbackService {
-  apiHost: string = 'http://localhost:16177/';
-  headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
-
   constructor(private http: HttpClient) {}
 
   getFeedbacksPublics(): Observable<FeedbackPatientResponseDto[]> {
-    return this.http.get<FeedbackPatientResponseDto[]>(this.apiHost + 'api/Feedback/published', { headers: this.headers });
+    return this.http.get<FeedbackPatientResponseDto[]>(ConstSettings.apiHost + 'api/Feedback/published', { headers: ConstSettings.standardHeader });
   }
 
   createFeedback(feedback: any): Observable<any> {
-  return this.http.post<any>(this.apiHost + 'api/feedback', feedback, {headers: this.headers});
+  return this.http.post<any>(ConstSettings.apiHost + 'api/feedback', feedback, {headers: ConstSettings.standardHeader});
 }
 
 }
