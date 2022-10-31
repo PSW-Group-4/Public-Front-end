@@ -1,0 +1,65 @@
+.logo {
+  background-color: lightcyan;
+  padding: 10px;
+  border-radius: 125px;
+  height: 400px;
+  width: 400px;
+  box-shadow: 0px 0px 30px lightcyan;
+}
+
+.landingPage {
+  animation: fadein 3s;
+  margin-top: 25px;
+}
+p,
+h1,
+h2 {
+  color: lightcyan;
+}
+h1 {
+  font-size: 250%;
+}
+.description {
+  display: block;
+  margin-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px;
+}
+.description p {
+  font-size: 125%;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.logoAndLoginRegister {
+  width: 100%;
+  table-layout: fixed;
+}
+.loginRegister {
+  width: 50%;
+  margin: auto;
+}
+.loginRegister button {
+  margin-bottom: 25px;
+}
+
+.loginRegister a .register {
+  background: lightgrey;
+}
+.loginRegister a .register:hover {
+  background-color: grey;
+}
+.loginRegister a .login {
+  background: lightgreen;
+}
+.loginRegister a .login:hover {
+  background-color: greenyellow;
+}

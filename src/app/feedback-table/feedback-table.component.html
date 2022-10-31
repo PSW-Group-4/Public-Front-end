@@ -1,0 +1,19 @@
+<div class="feedbackSection">
+  <table>
+    <th>Date:</th>
+    <th>Patient</th>
+    <th>Feedback</th>
+
+    <tbody>
+      <tr *ngFor="let feedback of feedbacksPublics">
+        <td class="dateWidth">
+          {{ feedback.date | date: "d/M/yyyy HH:mm" }}
+        </td>
+        <td class="patientWidith">{{ feedback.patientFullname }}</td>
+        <td class="feedbackTextWidith">
+          {{ feedback.text }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

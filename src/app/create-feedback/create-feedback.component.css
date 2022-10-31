@@ -1,0 +1,24 @@
+button {
+  width: fit-content;
+}
+p,
+label {
+  color: lightcyan;
+}
+button {
+  background: lightgreen;
+}
+button:hover {
+  background-color: greenyellow;
+}
+
+input[type="checkbox"]:checked {
+  accent-color: yellowgreen;
+}
+
+textarea {
+  resize: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  box-sizing: border-box;
+  outline: none;
+}
