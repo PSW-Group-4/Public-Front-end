@@ -10,6 +10,7 @@ import { BloodBankService } from '../Service/blood-bank.service';
 })
 export class ChangePasswordComponent implements OnInit {
   public bloodBank : BloodBank = new BloodBank();
+  public newPassword: string = "";
   constructor( private bloodBankService : BloodBankService, private router: Router, private route: ActivatedRoute ) { }
 
   ngOnInit(): void { this.route.queryParams
@@ -20,7 +21,7 @@ export class ChangePasswordComponent implements OnInit {
       })
     });
   }
-  
+
   public changePassword() {
     if (!this.isValidInput()) return;
     this.bloodBankService.updateBloodBank(this.bloodBank).subscribe(res => {
