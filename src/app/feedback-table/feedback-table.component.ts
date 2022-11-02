@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FeedbacksPublic } from '../model/feedbackPublic.model';
+import { FeedbackPatientResponseDto } from '../model/feedbackPatientResponseDto.model';
 import { FeedbackService } from './../Services/feedback.service';
 
 @Component({
@@ -9,14 +9,14 @@ import { FeedbackService } from './../Services/feedback.service';
   styleUrls: ['./feedback-table.component.css']
 })
 export class FeedbackTableComponent implements OnInit {
-  public feedbacksPublics: any;
+  public feedbacksPublics: FeedbackPatientResponseDto[] = [];
 
   constructor(private feedbackService: FeedbackService, private router: Router) { }
 
   ngOnInit(): void {
       this.feedbackService.getFeedbacksPublics().subscribe(res => {
       this.feedbacksPublics = res;
-      console.table(this.feedbacksPublics);
+
     })
 
   }

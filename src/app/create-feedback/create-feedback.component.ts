@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FeedbackRequestDto } from '../model/feedbackRequestDto.mode';
 import { FeedbackService } from '../Services/feedback.service';
 
 
@@ -13,10 +14,8 @@ import { FeedbackService } from '../Services/feedback.service';
 export class CreateFeedbackComponent implements OnInit {
 
   EnterAllFieldsCorrectlyMessage: string = "";
-  isCheckedAnonymous: Boolean = false;
-  isCheckedPublic: Boolean = false;
 
-  feedbackText: string = ''
+  public feedbackRequestDto: FeedbackRequestDto = new FeedbackRequestDto();
 
   constructor(private feedbackService: FeedbackService, private router: Router) { }
 
@@ -24,17 +23,13 @@ export class CreateFeedbackComponent implements OnInit {
   }
 
   public sendFeedback() {
-    if (this.feedbackText == "") {
+    if (this.feedbackRequestDto.text == "") {
       this.EnterAllFieldsCorrectlyMessage = "Please enter the feedback text!";
       return;
     }
 
-    var FeedbackRequestDto: any = {}
-    FeedbackRequestDto.text = this.feedbackText;
-    FeedbackRequestDto.isAnonimous = this.isCheckedAnonymous;
-    FeedbackRequestDto.isDesiredPublic = this.isCheckedPublic;
 
-    this.feedbackService.createFeedback(FeedbackRequestDto).subscribe(res => {
+    this.feedbackService.createFeedback(this.feedbackRequestDto).subscribe(res => {
       console.log(res);
            this.router.navigate(['/patientHome']);
 

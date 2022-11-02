@@ -4,16 +4,17 @@ import { CreateFeedbackComponent } from './create-feedback/create-feedback.compo
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LoginComponent } from './login/login.component';
 import { PatientHomeComponent } from './patient-home/patient-home.component';
-
+import { ChangePasswordComponent } from './blood-bank/change-password/change-password.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   {path: 'loginPage', component: LoginComponent },
   {path: 'landingPage', component: LandingPageComponent },
+  {path:'bloodBanks/:ApiKey', component: ChangePasswordComponent},
   {
     path: 'patientHome', component: PatientHomeComponent,
     children: [{ path: 'createFeedback', component: CreateFeedbackComponent }]
-  },
+  }
 
 ];
 
