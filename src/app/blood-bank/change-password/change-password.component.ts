@@ -25,7 +25,7 @@ export class ChangePasswordComponent implements OnInit {
   public changePassword() {
     if (!this.isValidInput()) return;
     this.bloodBankService.updateBloodBank(this.bloodBank).subscribe(res => {
-      alert("Password was changed to: " +this.bloodBank.password);
+      alert("Password successfully changed!");
       this.router.navigate(['']);
     });
   }
