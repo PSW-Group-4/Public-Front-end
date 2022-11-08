@@ -1,20 +1,81 @@
-<div>
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Surname</th>
-      <th>Email</th>
-      <th>Address</th>
-      <th>Blood type</th>
-      <th>Doctor</th>
-    </tr>
-    <tr>
-      <td>{{ patientRegistrationInfo.name }}</td>
-      <td>{{ patientRegistrationInfo.surname }}</td>
-      <td>{{ patientRegistrationInfo.email }}</td>
-      <td>{{ patientRegistrationInfo.address }}</td>
-      <td>{{ patientRegistrationInfo.bloodType }}</td>
-      <td>{{ patientRegistrationInfo.doctor }}</td>
-    </tr>
-  </table>
+<div class="test">
+  <div class="header">Profile</div>
+  <mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile
+      ><img class="logo" src="assets/profile.png" alt="LOGO"
+    /></mat-grid-tile>
+    <mat-grid-tile rowspan="2">
+      <table class="tableInfo">
+        <tr>
+          <td>
+            <mat-card>
+              <mat-card-content>Address:</mat-card-content>
+            </mat-card>
+          </td>
+          <td>
+            <mat-card class="fields">
+              <mat-card-content>{{
+                patientRegistrationInfo.address
+              }}</mat-card-content>
+            </mat-card>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-card>
+              <mat-card-content>Blood Type:</mat-card-content>
+            </mat-card>
+          </td>
+          <td>
+            <mat-card class="fields">
+              <mat-card-content>{{
+                patientRegistrationInfo.bloodType
+              }}</mat-card-content>
+            </mat-card>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-card>
+              <mat-card-content>Allergies:</mat-card-content>
+            </mat-card>
+          </td>
+          <td>
+            <mat-card class="fields">
+              <mat-card-content>{{
+                patientRegistrationInfo.allergies
+              }}</mat-card-content>
+            </mat-card>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-card>
+              <mat-card-content>Doctor:</mat-card-content>
+            </mat-card>
+          </td>
+          <td>
+            <mat-card class="fields">
+              <mat-card-content>{{
+                patientRegistrationInfo.doctor
+              }}</mat-card-content>
+            </mat-card>
+          </td>
+        </tr>
+      </table>
+    </mat-grid-tile>
+    <mat-grid-tile
+      ><mat-card class="rowInfo">
+        <mat-card-content
+          ><div class="importantText">
+            {{ patientRegistrationInfo.name }}
+            {{ patientRegistrationInfo.surname }}
+          </div>
+          <div class="importantText">
+            {{ patientRegistrationInfo.email }}
+          </div></mat-card-content
+        >
+      </mat-card></mat-grid-tile
+    >
+  </mat-grid-list>
 </div>

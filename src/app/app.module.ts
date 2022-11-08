@@ -1,3 +1,4 @@
+import { MaterialModule } from './material/material.module';
 import { ProfileModule } from './modules/profile/profile.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -30,6 +31,7 @@ import { BloodBankModule } from './blood-bank/blood-bank.module';
     FormsModule,
     BloodBankModule,
     ProfileModule,
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -11,9 +11,10 @@ export class RegistrationInfoService {
     return {
       name: 'Savo',
       surname: 'Oroz',
-      email: 'email@gmail.com',
+      email: 'oroz.savo@gmail.com',
       address: 'ulica/grad/broj',
       bloodType: 'A',
+      allergies: ['peanuts', 'cats'],
       doctor: 'doctor',
     };
   }
