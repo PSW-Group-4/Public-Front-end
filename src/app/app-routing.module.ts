@@ -1,3 +1,4 @@
+import { RegistrationInfoComponent } from './modules/profile/registration-info/registration-info.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateFeedbackComponent } from './create-feedback/create-feedback.component';
@@ -8,19 +9,27 @@ import { ChangePasswordComponent } from './blood-bank/change-password/change-pas
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
-  {path: 'loginPage', component: LoginComponent },
-  {path: 'landingPage', component: LandingPageComponent },
-  {path:'bloodBanks/:ApiKey', component: ChangePasswordComponent},
+  { path: 'loginPage', component: LoginComponent },
+  { path: 'landingPage', component: LandingPageComponent },
+  { path: 'bloodBanks/:ApiKey', component: ChangePasswordComponent },
   {
-    path: 'patientHome', component: PatientHomeComponent,
-    children: [{ path: 'createFeedback', component: CreateFeedbackComponent }]
-  }
-
+    path: 'patientHome',
+    component: PatientHomeComponent,
+    children: [
+      { path: 'createFeedback', component: CreateFeedbackComponent },
+      { path: 'info', component: RegistrationInfoComponent },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
-export const routingComponents = [CreateFeedbackComponent,LandingPageComponent,PatientHomeComponent,LoginComponent]
+export class AppRoutingModule {}
+export const routingComponents = [
+  CreateFeedbackComponent,
+  LandingPageComponent,
+  PatientHomeComponent,
+  LoginComponent,
+];

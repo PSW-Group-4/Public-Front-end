@@ -1,8 +1,9 @@
+import { ProfileModule } from './modules/profile/profile.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from "@angular/common/http";
-import { AppRoutingModule,routingComponents } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FeedbackTableComponent } from './feedback-table/feedback-table.component';
@@ -19,7 +20,7 @@ import { BloodBankModule } from './blood-bank/blood-bank.module';
     CreateFeedbackComponent,
     routingComponents,
     LandingPageComponent,
-    PatientHomeComponent
+    PatientHomeComponent,
   ],
   imports: [
     HttpClientModule,
@@ -28,9 +29,9 @@ import { BloodBankModule } from './blood-bank/blood-bank.module';
     BrowserAnimationsModule,
     FormsModule,
     BloodBankModule,
-
+    ProfileModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
