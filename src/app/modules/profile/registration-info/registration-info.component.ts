@@ -1,3 +1,4 @@
+import { PatientDto } from './../model/patientDto.model';
 import { RegistrationInfoService } from './../services/registration-info.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -16,7 +17,10 @@ export class RegistrationInfoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.patientRegistrationInfo =
-      this.registrationInfoService.getLoggedInPatient();
+    // this.patientRegistrationInfo =
+    //   this.registrationInfoService.getLoggedInPatient();
+    this.registrationInfoService.getLoggedInPatient().subscribe((res) => {
+      this.patientRegistrationInfo = res;
+    });
   }
 }

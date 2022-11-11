@@ -1,4 +1,4 @@
-<div class="test">
+<div class="grid">
   <div class="header">Profile</div>
   <mat-grid-list cols="2" rowHeight="2:1">
     <mat-grid-tile
@@ -13,11 +13,14 @@
             </mat-card>
           </td>
           <td>
-            <mat-card class="fields">
-              <mat-card-content>{{
-                patientRegistrationInfo.address
-              }}</mat-card-content>
-            </mat-card>
+            <ng-container *ngIf="patientRegistrationInfo"
+              ><mat-card class="fields">
+                <mat-card-content>
+                  {{ patientRegistrationInfo.address.street }} /
+                  {{ patientRegistrationInfo.address.streetNumber }}
+                </mat-card-content>
+              </mat-card></ng-container
+            >
           </td>
         </tr>
         <tr>
@@ -28,9 +31,11 @@
           </td>
           <td>
             <mat-card class="fields">
-              <mat-card-content>{{
-                patientRegistrationInfo.bloodType
-              }}</mat-card-content>
+              <mat-card-content
+                ><ng-container *ngIf="patientRegistrationInfo">{{
+                  patientRegistrationInfo.bloodType
+                }}</ng-container></mat-card-content
+              >
             </mat-card>
           </td>
         </tr>
@@ -42,9 +47,13 @@
           </td>
           <td>
             <mat-card class="fields">
-              <mat-card-content>{{
-                patientRegistrationInfo.allergies
-              }}</mat-card-content>
+              <mat-card-content
+                ><ng-container *ngIf="patientRegistrationInfo"
+                  ><span *ngFor="let item of patientRegistrationInfo.allergies"
+                    >{{ item.name }},
+                  </span></ng-container
+                ></mat-card-content
+              >
             </mat-card>
           </td>
         </tr>
@@ -55,25 +64,33 @@
             </mat-card>
           </td>
           <td>
-            <mat-card class="fields">
-              <mat-card-content>{{
-                patientRegistrationInfo.doctor
-              }}</mat-card-content>
-            </mat-card>
+            <ng-container *ngIf="patientRegistrationInfo"
+              ><mat-card class="fields">
+                <mat-card-content>
+                  {{
+                    patientRegistrationInfo.choosenDoctor.name +
+                      " " +
+                      patientRegistrationInfo.choosenDoctor.surname
+                  }}</mat-card-content
+                >
+              </mat-card></ng-container
+            >
           </td>
         </tr>
       </table>
     </mat-grid-tile>
     <mat-grid-tile
-      ><mat-card class="rowInfo">
+      ><mat-card>
         <mat-card-content
-          ><div class="importantText">
-            {{ patientRegistrationInfo.name }}
-            {{ patientRegistrationInfo.surname }}
-          </div>
-          <div class="importantText">
-            {{ patientRegistrationInfo.email }}
-          </div></mat-card-content
+          ><ng-container *ngIf="patientRegistrationInfo"
+            ><div class="importantText">
+              {{ patientRegistrationInfo.name }}
+              {{ patientRegistrationInfo.surname }}
+            </div>
+            <div class="importantText">
+              {{ patientRegistrationInfo.email }}
+            </div></ng-container
+          ></mat-card-content
         >
       </mat-card></mat-grid-tile
     >

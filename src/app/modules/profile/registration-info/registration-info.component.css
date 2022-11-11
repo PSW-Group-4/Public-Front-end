@@ -1,6 +1,13 @@
-.test {
+.grid {
   width: 80%;
   margin: auto;
+}
+
+.logo {
+  padding: 10px;
+  border-radius: 125px;
+  height: 70%;
+  width: 35%;
 }
 
 .tableInfo {
