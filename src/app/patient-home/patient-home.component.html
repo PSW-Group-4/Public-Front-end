@@ -1,8 +1,7 @@
 <ul>
   <li><a href="/patientHome/info/">Profile</a></li>
-  <li><a href="/patientHome/createFeedback">Create Feedback</a></li>
+  <li><a routerLink="createFeedback">Create Feedback</a></li>
   <li><a href="/landingPage">Medical Appointments</a></li>
-
-  <li style="float: right"><a href="/landingPage">Log out</a></li>
+  <li (click)="logout()" style="float: right"><a>Log out</a></li>
 </ul>
 <router-outlet></router-outlet>
