@@ -16,11 +16,12 @@ const routes: Routes = [
   { path: 'landingPage', component: LandingPageComponent, canActivate: [IncognitoGuard] },
   { path: 'bloodBanks/:ApiKey', component: ChangePasswordComponent },
   {
-    path: 'patientHome', component: PatientHomeComponent, canActivate: [RoleGuard],
-    data: { expectedRole: 'Patient' },
+    path: 'patient', component: PatientHomeComponent, canActivate: [RoleGuard],
+    data :{expectedRole: 'Patient'},
     children: [{ path: 'createFeedback', component: CreateFeedbackComponent }]
   },
   { path: '', redirectTo: 'landingPage', pathMatch: 'full' },
+  { path: '**', redirectTo: 'landingPage', pathMatch: 'full' }
 
 ];
 
