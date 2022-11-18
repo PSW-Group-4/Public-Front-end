@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
-import { AuthService } from './auth.service';
+import { AuthService } from '../services/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
@@ -13,11 +13,18 @@ export class RoleGuardService implements CanActivate {
       const expectedRole = route.data['expectedRole'];    
 
       const token = localStorage.getItem('jwt');
+      if(!token)
+      {
+        this.router.navigate(['landingPage']);
+        return false;
+      }
+
       const tokenPayload = this.jwtHelper.decodeToken(token!);
+      const role = tokenPayload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
       
       if(
         !this.auth.isAuthenticated() ||
-        tokenPayload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] !== expectedRole
+        role !== expectedRole
       )
       {
         this.router.navigate(['landingPage']);
@@ -26,4 +33,5 @@ export class RoleGuardService implements CanActivate {
       return true;
 
   }
+
 }
