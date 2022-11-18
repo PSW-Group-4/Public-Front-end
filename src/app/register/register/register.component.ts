@@ -1,23 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AllegrieService } from 'src/app/Services/allegrie.service';
 
-interface Gender {
+export interface Gender {
   value: number;
   viewValue: string;
 }
 
-interface BloodType {
+export interface BloodType {
   value: number;
   viewValue: string;
 }
 
-interface Allergies {
+export interface Allergies {
   id: number;
   name: string;
 }
 
-interface Doctor {
+export interface Doctor {
   id: string;
   name: string;
   surname: string
@@ -90,9 +91,13 @@ export class RegisterComponent implements OnInit {
   };
 
 
-  constructor() { }
+  constructor(private readonly router: Router, private readonly allegrieService: AllegrieService) { }
 
   ngOnInit(): void {
+
+    this.allegrieService.getsAllegries().subscribe(res => this.allergies = res)
+
+
 
   }
 
