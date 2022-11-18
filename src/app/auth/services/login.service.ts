@@ -16,7 +16,7 @@ export class LoginService {
   private redirectToMainPage = () =>
   {
     var roleLandingPages = new Map<string, string>([
-      ['Patient', 'patientHome']
+      ['Patient', 'patient']
     ]);
 
       const token = localStorage.getItem('jwt');
