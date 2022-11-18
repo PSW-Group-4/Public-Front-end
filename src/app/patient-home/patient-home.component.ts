@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from '../auth/services/login.service';
 
 @Component({
   selector: 'app-patient-home',
@@ -8,15 +9,14 @@ import { Router } from '@angular/router';
 })
 export class PatientHomeComponent implements OnInit {
 
-  constructor(private readonly router: Router) { }
+  constructor(private readonly router: Router, private readonly loginService: LoginService) { }
 
   ngOnInit(): void {
   }
 
   logout = () =>
   {
-    localStorage.removeItem('jwt');
-    this.router.navigate(['landingPage']);
+    this.loginService.logout();
   }
 
 }

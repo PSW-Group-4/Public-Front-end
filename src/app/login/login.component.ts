@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup} from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from './services/login.service';
+import { LoginService } from '../auth/services/login.service';
+import { Jwt } from '../auth/Model/Jwt.model';
+import { LoginDto } from '../auth/Model/loginDto';
 
 @Component({
   selector: 'app-login',
@@ -30,22 +32,12 @@ export class LoginComponent implements OnInit {
 
   login = () =>
   {
-    let dto = {
+    let loginCredentials : LoginDto = {
       username:this.username!,
       password:this.password!
     }
 
-    this.loginService.login(dto).subscribe({
-      next: response =>{
-        localStorage.setItem('jwt', response.jwt);
-        this.router.navigate(['patientHome']);         
-      },
-      //TODO: handle errors
-      error: err => {
-        alert(err.message);
-      }  
-    }
-    );
+    this.loginService.login(loginCredentials);
   }
 
 }
