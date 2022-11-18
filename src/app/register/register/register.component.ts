@@ -15,8 +15,8 @@ export interface BloodType {
 }
 
 export interface Allergies {
-  id: number;
   name: string;
+  id: string;
 }
 
 export interface Doctor {
@@ -55,15 +55,13 @@ export class RegisterComponent implements OnInit {
   ];
   selectedGender = this.genders[0].value;
 
-
-
-  doctors: Doctor[] = [{ id: "", name: 'Imenko', surname: "Prezimenic", patientCount: 69 }];
+  doctors: Doctor[] = [{ id: "", name: '', surname: "", patientCount: 0 }];
 
   selectedDoctor = this.doctors[0].id;
 
-  allergies: Allergies[] = [];
-  allergiesList: Allergies[] = this.allergies;
-  allergiesListSelected = new FormControl('');
+
+  allergiesList: Allergies[] = [];
+  allergiesListSelected = new FormControl("");
 
   hide = true;
   registrationForm = new FormGroup({
@@ -96,8 +94,12 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.allegrieService.getsAllegries().subscribe(res => this.allergies = res)
+    this.allegrieService.getsAllegries().subscribe(res => {
 
+      this.allergiesList = res
+      console.table(res);
+    }
+    )
     this.doctorService.getDoctorsWithLeastPatients().subscribe(res => {
 
       this.doctors = res;
@@ -107,6 +109,6 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  registerUser(): void { console.log(this.allergiesListSelected.value) }
+  registerUser(): void { console.log("aaaa" + this.allergiesListSelected.value) }
 
 }
