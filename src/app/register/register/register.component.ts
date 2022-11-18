@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AllegrieService } from 'src/app/Services/allegrie.service';
+import { DoctorService } from 'src/app/Services/doctor.service';
 
 export interface Gender {
   value: number;
@@ -91,13 +92,18 @@ export class RegisterComponent implements OnInit {
   };
 
 
-  constructor(private readonly router: Router, private readonly allegrieService: AllegrieService) { }
+  constructor(private readonly router: Router, private readonly allegrieService: AllegrieService, private readonly doctorService: DoctorService) { }
 
   ngOnInit(): void {
 
     this.allegrieService.getsAllegries().subscribe(res => this.allergies = res)
 
+    this.doctorService.getDoctorsWithLeastPatients().subscribe(res => {
 
+      this.doctors = res;
+      this.selectedDoctor = this.doctors[0].id;
+    }
+    );
 
   }
 

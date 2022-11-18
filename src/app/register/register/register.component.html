@@ -89,23 +89,24 @@
           </td>
         </tr>
       </table>
-      <mat-form-field
-        class="example-full-width"
-        appearance="fill"
-        style="text-align: center"
-      >
-        <mat-label>Date of birth</mat-label>
-        <input
-          matInput
-          [matDatepickerFilter]="myFilter"
-          [matDatepicker]="picker"
-        />
-        <mat-datepicker-toggle
-          matIconSuffix
-          [for]="picker"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
+      <div style="text-align: center; margin: auto">
+        <mat-form-field
+          appearance="fill"
+          style="text-align: center; margin: auto"
+        >
+          <mat-label>Date of birth</mat-label>
+          <input
+            matInput
+            [matDatepickerFilter]="myFilter"
+            [matDatepicker]="picker"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
     </div>
     <div class="sections">
       <table class="example-full-width" cellspacing="0">
@@ -204,6 +205,4 @@
 
     <p>{{ errorMessage }}</p>
   </form>
-
-  <button (click)="registerUser()">test</button>
 </div>
