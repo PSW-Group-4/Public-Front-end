@@ -7,15 +7,17 @@ import { PatientHomeComponent } from './patient-home/patient-home.component';
 import { ChangePasswordComponent } from './blood-bank/change-password/change-password.component';
 import { RoleGuardService as RoleGuard } from './auth/guards/role-guard.service';
 import { IncognitoGuard } from './auth/guards/incognito-guard.service';
+import { RegisterComponent } from './register/register/register.component';
 
 //TODO: auth guard for bloodBanks
 const routes: Routes = [
-  {path: 'loginPage', component: LoginComponent, canActivate:[IncognitoGuard]},
-  {path: 'landingPage', component: LandingPageComponent, canActivate:[IncognitoGuard] },
-  {path:'bloodBanks/:ApiKey', component: ChangePasswordComponent},
+  { path: 'loginPage', component: LoginComponent, canActivate: [IncognitoGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [IncognitoGuard] },
+  { path: 'landingPage', component: LandingPageComponent, canActivate: [IncognitoGuard] },
+  { path: 'bloodBanks/:ApiKey', component: ChangePasswordComponent },
   {
     path: 'patientHome', component: PatientHomeComponent, canActivate: [RoleGuard],
-    data :{expectedRole: 'Patient'},
+    data: { expectedRole: 'Patient' },
     children: [{ path: 'createFeedback', component: CreateFeedbackComponent }]
   },
   { path: '', redirectTo: 'landingPage', pathMatch: 'full' },
@@ -24,7 +26,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
+
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [CreateFeedbackComponent,LandingPageComponent,PatientHomeComponent,LoginComponent]
+export const routingComponents = [CreateFeedbackComponent, LandingPageComponent, PatientHomeComponent, LoginComponent]
