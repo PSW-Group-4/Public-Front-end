@@ -1,3 +1,4 @@
+import { AccountService } from './../auth/services/account.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private readonly loginService: LoginService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly accountService: AccountService
   ) {}
 
   ngOnInit(): void {
@@ -37,7 +39,7 @@ export class LoginComponent implements OnInit {
     console.log(id);
 
     if (token !== null && id != null) {
-      this.loginService.activateAccount(token, id).subscribe((res) => {
+      this.accountService.activateAccount(token, id).subscribe((res) => {
         console.log(res);
       });
     }
