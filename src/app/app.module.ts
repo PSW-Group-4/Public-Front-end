@@ -3,7 +3,7 @@ import { ProfileModule } from './modules/profile/profile.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -14,6 +14,9 @@ import { PatientHomeComponent } from './patient-home/patient-home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BloodBankModule } from './blood-bank/blood-bank.module';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { RegisterModule } from './register/register.module';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -34,11 +37,18 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
     BloodBankModule,
     ProfileModule,
     MaterialModule,
+    RegisterModule,
     ReactiveFormsModule,
+    MatSelectModule,
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })
