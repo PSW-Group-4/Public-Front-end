@@ -5,7 +5,7 @@
         <td>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Username</mat-label>
-            <input matInput formControlName="email" email />
+            <input matInput formControlName="username" />
           </mat-form-field>
         </td>
 
@@ -97,6 +97,7 @@
           <mat-label>Date of birth</mat-label>
           <input
             matInput
+            formControlName="birthDate"
             [matDatepickerFilter]="myFilter"
             [matDatepicker]="picker"
           />
@@ -125,7 +126,7 @@
           <td>
             <mat-form-field appearance="fill">
               <mat-label>Blood type</mat-label>
-              <mat-select [(value)]="selectedFood">
+              <mat-select [(value)]="selectedBloodType">
                 <mat-option
                   [value]="option.value"
                   *ngFor="let option of bloodType"
@@ -192,5 +193,5 @@
 
     <p>{{ errorMessage }}</p>
   </form>
-  <button>test</button>
+  <button (click)="registerUser()">test</button>
 </div>
