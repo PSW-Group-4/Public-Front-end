@@ -1,3 +1,4 @@
+import { RegistrationInfoComponent } from './modules/profile/registration-info/registration-info.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateFeedbackComponent } from './create-feedback/create-feedback.component';
@@ -11,24 +12,44 @@ import { RegisterComponent } from './register/register/register.component';
 
 //TODO: auth guard for bloodBanks
 const routes: Routes = [
-  { path: 'loginPage', component: LoginComponent, canActivate: [IncognitoGuard] },
-  { path: 'register', component: RegisterComponent, canActivate: [IncognitoGuard] },
-  { path: 'landingPage', component: LandingPageComponent, canActivate: [IncognitoGuard] },
+  {
+    path: 'loginPage',
+    component: LoginComponent,
+    canActivate: [IncognitoGuard],
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [IncognitoGuard],
+  },
+  {
+    path: 'landingPage',
+    component: LandingPageComponent,
+    canActivate: [IncognitoGuard],
+  },
   { path: 'bloodBanks/:ApiKey', component: ChangePasswordComponent },
   {
-    path: 'patient', component: PatientHomeComponent, canActivate: [RoleGuard],
-    data :{expectedRole: 'Patient'},
-    children: [{ path: 'createFeedback', component: CreateFeedbackComponent }]
+    path: 'patient',
+    component: PatientHomeComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRole: 'Patient' },
+    children: [
+      { path: 'createFeedback', component: CreateFeedbackComponent },
+      { path: 'info', component: RegistrationInfoComponent },
+    ],
   },
   { path: '', redirectTo: 'landingPage', pathMatch: 'full' },
-  { path: '**', redirectTo: 'landingPage', pathMatch: 'full' }
-
+  { path: '**', redirectTo: 'landingPage', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
-export const routingComponents = [CreateFeedbackComponent, LandingPageComponent, PatientHomeComponent, LoginComponent]
+export class AppRoutingModule {}
+export const routingComponents = [
+  CreateFeedbackComponent,
+  LandingPageComponent,
+  PatientHomeComponent,
+  LoginComponent,
+];
