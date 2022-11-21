@@ -9,6 +9,7 @@ import { ChangePasswordComponent } from './blood-bank/change-password/change-pas
 import { RoleGuardService as RoleGuard } from './auth/guards/role-guard.service';
 import { IncognitoGuard } from './auth/guards/incognito-guard.service';
 import { RegisterComponent } from './register/register/register.component';
+import { NewsComponent } from './news/news.component';
 
 //TODO: auth guard for bloodBanks
 const routes: Routes = [
@@ -37,6 +38,10 @@ const routes: Routes = [
       { path: 'createFeedback', component: CreateFeedbackComponent },
       { path: 'info', component: RegistrationInfoComponent },
     ],
+  },
+  {
+    path: 'patient/news',
+    component: NewsComponent,
   },
   { path: '', redirectTo: 'landingPage', pathMatch: 'full' },
   { path: '**', redirectTo: 'landingPage', pathMatch: 'full' },
