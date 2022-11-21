@@ -1,4 +1,3 @@
-import { RegistrationInfoComponent } from './modules/profile/registration-info/registration-info.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateFeedbackComponent } from './create-feedback/create-feedback.component';
@@ -30,14 +29,9 @@ const routes: Routes = [
   },
   { path: 'bloodBanks/:ApiKey', component: ChangePasswordComponent },
   {
-    path: 'patient',
-    component: PatientHomeComponent,
-    canActivate: [RoleGuard],
-    data: { expectedRole: 'Patient' },
-    children: [
-      { path: 'createFeedback', component: CreateFeedbackComponent },
-      { path: 'info', component: RegistrationInfoComponent },
-    ],
+    path: 'patient', component: PatientHomeComponent, canActivate: [RoleGuard],
+    data :{expectedRole: 'Patient'},
+    loadChildren: () => import('./patient/patient-routing.module').then(m => m.PatientRoutingModule)
   },
   {
     path: 'patient/news',
