@@ -33,10 +33,6 @@ const routes: Routes = [
     data :{expectedRole: 'Patient'},
     loadChildren: () => import('./patient/patient-routing.module').then(m => m.PatientRoutingModule)
   },
-  {
-    path: 'patient/news',
-    component: NewsComponent,
-  },
   { path: '', redirectTo: 'landingPage', pathMatch: 'full' },
   { path: '**', redirectTo: 'landingPage', pathMatch: 'full' },
 ];
@@ -50,5 +46,6 @@ export const routingComponents = [
   CreateFeedbackComponent,
   LandingPageComponent,
   PatientHomeComponent,
+  NewsComponent,
   LoginComponent,
 ];
