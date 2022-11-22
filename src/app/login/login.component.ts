@@ -32,16 +32,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     const params = new URLSearchParams(window.location.search);
-    console.log(params);
     var token = params.get('token');
-    console.log(token);
     var id = params.get('id');
-    console.log(id);
 
     if (token !== null && id != null) {
-      this.accountService.activateAccount(token, id).subscribe((res) => {
-        console.log(res);
-      });
+      this.accountService.activateAccount(token, id).subscribe((res) => {});
     }
   }
 
