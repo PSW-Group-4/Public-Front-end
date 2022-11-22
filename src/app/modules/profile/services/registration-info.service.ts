@@ -10,21 +10,9 @@ import { Observable } from 'rxjs';
 export class RegistrationInfoService {
   constructor(private http: HttpClient) {}
 
-  // getLoggedInPatient() {
-  //   return {
-  //     name: 'Savo',
-  //     surname: 'Oroz',
-  //     email: 'oroz.savo@gmail.com',
-  //     address: 'ulica/grad/broj',
-  //     bloodType: 'A',
-  //     allergies: ['peanuts', 'cats'],
-  //     doctor: 'doctor',
-  //   };
-  // }
-
   getLoggedInPatient(): Observable<PatientDto> {
     return this.http.get<PatientDto>(
-      ConstSettings.apiHost + 'api/Patient/loggedInPatient',
+      ConstSettings.apiHost + 'api/Patient/info',
       { headers: ConstSettings.standardHeader }
     );
   }

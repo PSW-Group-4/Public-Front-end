@@ -16,7 +16,9 @@
             <ng-container *ngIf="patientRegistrationInfo"
               ><mat-card class="fields">
                 <mat-card-content>
-                  {{ patientRegistrationInfo.address.street }} /
+                  {{ patientRegistrationInfo.address.country }} -
+                  {{ patientRegistrationInfo.address.city }} -
+                  {{ patientRegistrationInfo.address.street }} -
                   {{ patientRegistrationInfo.address.streetNumber }}
                 </mat-card-content>
               </mat-card></ng-container
@@ -50,7 +52,7 @@
               <mat-card-content
                 ><ng-container *ngIf="patientRegistrationInfo"
                   ><span *ngFor="let item of patientRegistrationInfo.allergies"
-                    >{{ item.name }},
+                    >{{ item.name }} |
                   </span></ng-container
                 ></mat-card-content
               >
@@ -71,8 +73,8 @@
                     patientRegistrationInfo.choosenDoctor.name +
                       " " +
                       patientRegistrationInfo.choosenDoctor.surname
-                  }}</mat-card-content
-                >
+                  }}
+                </mat-card-content>
               </mat-card></ng-container
             >
           </td>
@@ -80,19 +82,19 @@
       </table>
     </mat-grid-tile>
     <mat-grid-tile
-      ><mat-card>
-        <mat-card-content
-          ><ng-container *ngIf="patientRegistrationInfo"
-            ><div class="importantText">
+      ><ng-container *ngIf="patientRegistrationInfo"
+        ><mat-card>
+          <mat-card-content>
+            <div class="importantText">
               {{ patientRegistrationInfo.name }}
               {{ patientRegistrationInfo.surname }}
             </div>
             <div class="importantText">
               {{ patientRegistrationInfo.email }}
-            </div></ng-container
-          ></mat-card-content
-        >
-      </mat-card></mat-grid-tile
+            </div>
+          </mat-card-content>
+        </mat-card></ng-container
+      ></mat-grid-tile
     >
   </mat-grid-list>
 </div>
