@@ -14,6 +14,10 @@ export class PatientHomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  loadNews(){
+    this.router.navigate(['patient/news'])
+  }
+
   logout = () =>
   {
     this.loginService.logout();

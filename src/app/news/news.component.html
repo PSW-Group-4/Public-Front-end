@@ -1,0 +1,26 @@
+<div class="basic-container">
+    <h1 style="text-align: left;">
+        News
+    </h1>
+    <mat-grid-list cols="4" rowHeight="400px" gutterSize="20px">
+        <mat-grid-tile *ngFor="let i of newsPubl">
+            <mat-card [style.width]="'100%'" class="tile">
+                <div [style.height]="'100%'" fxLayout="row">
+
+                    <div [style.height]="'100%'" fxFlex fxFlexAlign="center" fxLayout="column">
+                        <div fxLayout="row">
+                            <small>{{i.timestamp| date: "MM-dd-yyyy HH:mm:ss"}}</small>
+                        </div>
+                        <h1 style="text-align: left;">
+                            {{i.title}}
+                        </h1>
+                        <div fxLayout="row" [style.flex]="'1'" style="text-align: left;">
+                            {{i.body}}
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+</div>

@@ -17,6 +17,8 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { RegisterModule } from './register/register.module';
 import { MatSelectModule } from '@angular/material/select';
+import { NewsComponent } from './news/news.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { MatSelectModule } from '@angular/material/select';
     routingComponents,
     LandingPageComponent,
     PatientHomeComponent,
+    NewsComponent,
   ],
   imports: [
     HttpClientModule,
@@ -40,6 +43,7 @@ import { MatSelectModule } from '@angular/material/select';
     RegisterModule,
     ReactiveFormsModule,
     MatSelectModule,
+    FlexLayoutModule,
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
