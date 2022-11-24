@@ -171,7 +171,7 @@ export class RegisterComponent implements OnInit {
     }
 
     console.log(dto);
-    this.userService.registerUser(dto).subscribe(res => { })
+    this.userService.registerUser(dto).subscribe(res => { this.router.navigate(['loginPage']) })
   }
 
 }
