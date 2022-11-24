@@ -1,15 +1,19 @@
 <div class="login-form">
   <p>Login</p>
-  <div class="content">
+  <div class="content" [formGroup]="loginForm">
     <div class="input-field">
-      <input type="text" placeholder="Username" />
+      <input formControlName="username" type="text" placeholder="Username" />
     </div>
     <div class="input-field">
-      <input type="password" placeholder="Password" />
+      <input
+        formControlName="password"
+        type="password"
+        placeholder="Password"
+      />
     </div>
   </div>
   <div class="action">
-    <a href="/patientHome"><button class="register">Register</button></a>
-    <a href="/patientHome"><button class="login">Login</button></a>
+    <button (click)="login()" class="login">Login</button>
+    <button class="register" routerLink="/register">Register</button>
   </div>
 </div>
