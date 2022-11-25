@@ -14,7 +14,7 @@ export class LoginService {
     private http: HttpClient,
     private readonly router: Router,
     private readonly jwtHelper: JwtHelperService
-  ) {}
+  ) { }
 
   private redirectToMainPage = () => {
     var roleLandingPages = new Map<string, string>([['Patient', 'patient']]);
@@ -23,7 +23,7 @@ export class LoginService {
     const tokenPayload = this.jwtHelper.decodeToken(token!);
     const role =
       tokenPayload[
-        'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
+      'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
       ];
 
     this.router.navigate([roleLandingPages.get(role)]);
@@ -45,7 +45,8 @@ export class LoginService {
         },
         //TODO: handle errors
         error: (err) => {
-          alert(err.message);
+          alert("Account not activated");
+
         },
       });
   };
