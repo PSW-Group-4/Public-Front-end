@@ -142,7 +142,7 @@ export class RegisterComponent implements OnInit {
 
   registerUser(): void {
 
-
+    this.errorMessage = "Fill the form data correctly";
     let dto: UserInfo = {
 
       userLoginDto: {
@@ -171,7 +171,14 @@ export class RegisterComponent implements OnInit {
     }
 
     console.log(dto);
-    this.userService.registerUser(dto).subscribe(res => { this.router.navigate(['loginPage']) })
+    this.userService.registerUser(dto).subscribe(res => { this.router.navigate(['loginPage']) }
+      ,
+      err => {
+        console.log(err);
+
+        this.errorMessage = err.error;
+      }
+    )
   }
 
 }
