@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NgModel } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
+import { SimpleAppointmentSchedulingModule } from './simple-appointment-scheduling/simple-appointment-scheduling.module';
 
 
 
@@ -11,7 +11,7 @@ import { MaterialModule } from '../material/material.module';
   imports: [
     CommonModule,
     MaterialModule,
-    FormsModule
+    SimpleAppointmentSchedulingModule
   ]
 })
 export class PatientModule { }

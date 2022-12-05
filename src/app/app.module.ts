@@ -19,6 +19,7 @@ import { RegisterModule } from './register/register.module';
 import { MatSelectModule } from '@angular/material/select';
 import { NewsComponent } from './news/news.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SimpleAppointmentSchedulingModule } from './patient/simple-appointment-scheduling/simple-appointment-scheduling.module';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     RegisterModule,
     ReactiveFormsModule,
     MatSelectModule,
-    FlexLayoutModule,
+    FlexLayoutModule
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
