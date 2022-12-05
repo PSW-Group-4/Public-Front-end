@@ -11,9 +11,21 @@ export interface Gender {
 }
 
 export interface BloodType {
+  bloodGroup: number;
+  rhFactor: number;
+}
+
+
+export interface BloodGroup {
   value: number;
   viewValue: string;
 }
+
+export interface RhFactor {
+  value: number;
+  viewValue: string;
+}
+
 
 export interface Allergies {
   name: string;
@@ -45,7 +57,7 @@ export interface UserInfo {
   jmbg: string,
   email: string,
   phoneNumber: string,
-  bloodType: number,
+  bloodType: BloodType,
   allergieIds: string,
   choosenDoctorId: string
 }
@@ -65,17 +77,21 @@ export class RegisterComponent implements OnInit {
   maxDate = new Date();
 
 
-  bloodType: BloodType[] = [
-    { value: 0, viewValue: 'A POS' },
-    { value: 1, viewValue: 'A NEG' },
-    { value: 3, viewValue: 'B POS' },
-    { value: 4, viewValue: 'B NEG' },
-    { value: 5, viewValue: 'O POS' },
-    { value: 6, viewValue: 'O NEG' },
-    { value: 7, viewValue: 'AB POS' },
-    { value: 8, viewValue: 'AB NEG' },
+  bloodGroup: BloodGroup[] = [
+    { value: 0, viewValue: 'O' },
+    { value: 1, viewValue: 'A' },
+    { value: 2, viewValue: 'B' },
+    { value: 3, viewValue: 'AB' },
   ];
-  selectedBloodType = this.bloodType[0].value;
+  selectedBloodGroup = this.bloodGroup[0].value;
+
+  rhFactor: RhFactor[] = [
+    { value: 0, viewValue: "POSITIVE" },
+    { value: 1, viewValue: "NEGATIVE" },
+  ]
+
+  selectedRhFactor = this.rhFactor[0].value;
+
 
   genders: Gender[] = [
     { value: 0, viewValue: 'Male' },
@@ -143,6 +159,13 @@ export class RegisterComponent implements OnInit {
   registerUser(): void {
 
     this.errorMessage = "Fill the form data correctly";
+
+    let bloodType1: BloodType = {
+      bloodGroup: this.selectedBloodGroup,
+      rhFactor: this.selectedRhFactor
+    }
+
+
     let dto: UserInfo = {
 
       userLoginDto: {
@@ -164,7 +187,7 @@ export class RegisterComponent implements OnInit {
       jmbg: this.form.jmbg.value ?? "",
       phoneNumber: this.form.phoneNumber.value ?? "",
       email: this.form.email.value ?? "",
-      bloodType: this.selectedBloodType,
+      bloodType: bloodType1,
       allergieIds: this.allergiesListSelected.value ?? "",
       choosenDoctorId: this.selectedDoctor
 
