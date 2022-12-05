@@ -24,11 +24,12 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls.password.value;
   }
 
+
   constructor(
     private readonly loginService: LoginService,
     private readonly router: Router,
     private readonly accountService: AccountService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const params = new URLSearchParams(window.location.search);
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit {
     var id = params.get('id');
 
     if (token !== null && id != null) {
-      this.accountService.activateAccount(token, id).subscribe((res) => {});
+      this.accountService.activateAccount(token, id).subscribe((res) => { });
     }
   }
 

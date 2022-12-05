@@ -45,7 +45,8 @@ export class LoginService {
         },
         //TODO: handle errors
         error: (err) => {
-          alert("Account not activated");
+
+          alert(err.error);
 
         },
       });
