@@ -3,7 +3,14 @@
   <li><a routerLink="createFeedback">Create Feedback</a></li>
   <li><a routerLink="/landingPage">Medical Appointments</a></li>
   <li><a routerLink="news">News</a></li>
-  <li><a routerLink="schedule-simple-appointment">schedule appointment(simple)</a></li>
+  <li>
+    <a routerLink="schedule-simple-appointment">schedule appointment(simple)</a>
+  </li>
+  <li>
+    <a routerLink="schedule-appointment-with-suggestions"
+      >schedule appointment(with suggestions)</a
+    >
+  </li>
   <li (click)="logout()" style="float: right"><a>Log out</a></li>
 </ul>
 <router-outlet></router-outlet>

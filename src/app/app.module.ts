@@ -20,6 +20,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { NewsComponent } from './news/news.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SimpleAppointmentSchedulingModule } from './patient/simple-appointment-scheduling/simple-appointment-scheduling.module';
+import { AppointmentWithSuggestionsSchedulingModule } from './patient/appointment-with-suggestions-scheduling/appointment-with-suggestions-scheduling.module';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { SimpleAppointmentSchedulingModule } from './patient/simple-appointment-
     RegisterModule,
     ReactiveFormsModule,
     MatSelectModule,
-    FlexLayoutModule
+    FlexLayoutModule,
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
