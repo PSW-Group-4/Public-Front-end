@@ -13,7 +13,7 @@ p {
 }
 
 .login-form .content {
-  padding: 0px 35px 35px 35px;
+  padding: 0px 35px 0px 35px;
   text-align: center;
 }
 .login-form .input-field {
@@ -43,15 +43,20 @@ p {
   width: 100%;
 }
 
-.login-form .action a .register {
-  background: lightgrey;
-}
-.login-form .action a .register:hover {
-  background-color: grey;
-}
-.login-form .action a .login {
-  background: lightgreen;
-}
-.login-form .action a .login:hover {
+.login {
   background-color: greenyellow;
+}
+.register {
+  background-color: lightblue;
+}
+
+.login:hover {
+  background-color: green;
+}
+.register:hover {
+  background-color: lightseagreen;
+}
+
+button {
+  margin: 0px 10px;
 }

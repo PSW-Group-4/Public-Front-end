@@ -125,11 +125,23 @@
           </td>
           <td>
             <mat-form-field appearance="fill">
-              <mat-label>Blood type</mat-label>
-              <mat-select [(value)]="selectedBloodType">
+              <mat-label>Blood group</mat-label>
+              <mat-select [(value)]="selectedBloodGroup">
                 <mat-option
                   [value]="option.value"
-                  *ngFor="let option of bloodType"
+                  *ngFor="let option of bloodGroup"
+                  >{{ option.viewValue }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="fill">
+              <mat-label>Rh factor</mat-label>
+              <mat-select [(value)]="selectedRhFactor">
+                <mat-option
+                  [value]="option.value"
+                  *ngFor="let option of rhFactor"
                   >{{ option.viewValue }}</mat-option
                 >
               </mat-select>
@@ -193,5 +205,4 @@
 
     <p>{{ errorMessage }}</p>
   </form>
-  <button (click)="registerUser()">test</button>
 </div>

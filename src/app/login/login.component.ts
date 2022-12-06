@@ -24,24 +24,20 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls.password.value;
   }
 
+
   constructor(
     private readonly loginService: LoginService,
     private readonly router: Router,
     private readonly accountService: AccountService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const params = new URLSearchParams(window.location.search);
-    console.log(params);
     var token = params.get('token');
-    console.log(token);
     var id = params.get('id');
-    console.log(id);
 
     if (token !== null && id != null) {
-      this.accountService.activateAccount(token, id).subscribe((res) => {
-        console.log(res);
-      });
+      this.accountService.activateAccount(token, id).subscribe((res) => { });
     }
   }
 
