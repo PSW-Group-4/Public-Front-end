@@ -50,5 +50,5 @@ export const routingComponents = [
   PatientHomeComponent,
   NewsComponent,
   LoginComponent,
-  TenderWinnerResponseComponent,
+  TenderWinnerResponseComponent
 ];

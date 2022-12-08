@@ -20,6 +20,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { NewsComponent } from './news/news.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TenderWinnerResponseComponent } from './tender-winner-response/tender-winner-response.component';
+import { AppointmentTableComponent } from './appointment-table/appointment-table.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { TenderWinnerResponseComponent } from './tender-winner-response/tender-w
     PatientHomeComponent,
     NewsComponent,
     TenderWinnerResponseComponent,
+    AppointmentTableComponent,
   ],
   imports: [
     HttpClientModule,
