@@ -9,6 +9,7 @@ import { RoleGuardService as RoleGuard } from './auth/guards/role-guard.service'
 import { IncognitoGuard } from './auth/guards/incognito-guard.service';
 import { RegisterComponent } from './register/register/register.component';
 import { NewsComponent } from './news/news.component';
+import { TenderWinnerResponseComponent } from './tender-winner-response/tender-winner-response.component';
 
 //TODO: auth guard for bloodBanks
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
     data :{expectedRole: 'Patient'},
     loadChildren: () => import('./patient/patient-routing.module').then(m => m.PatientRoutingModule)
   },
+  { path: 'tender/winner', component: TenderWinnerResponseComponent },
   { path: '', redirectTo: 'landingPage', pathMatch: 'full' },
   { path: '**', redirectTo: 'landingPage', pathMatch: 'full' },
 ];
@@ -48,4 +50,5 @@ export const routingComponents = [
   PatientHomeComponent,
   NewsComponent,
   LoginComponent,
+  TenderWinnerResponseComponent,
 ];
