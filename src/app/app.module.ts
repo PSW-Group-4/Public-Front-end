@@ -21,6 +21,7 @@ import { NewsComponent } from './news/news.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SimpleAppointmentSchedulingModule } from './patient/simple-appointment-scheduling/simple-appointment-scheduling.module';
 import { AppointmentWithSuggestionsSchedulingModule } from './patient/appointment-with-suggestions-scheduling/appointment-with-suggestions-scheduling.module';
+import { TenderWinnerResponseComponent } from './tender-winner-response/tender-winner-response.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AppointmentWithSuggestionsSchedulingModule } from './patient/appointmen
     LandingPageComponent,
     PatientHomeComponent,
     NewsComponent,
+    TenderWinnerResponseComponent,
   ],
   imports: [
     HttpClientModule,
