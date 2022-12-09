@@ -1,9 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  ValidatorFn,
+  AbstractControl,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AllegrieService } from 'src/app/Services/allegrie.service';
 import { DoctorService } from 'src/app/Services/doctor.service';
 import { UserService } from './user.service';
+
+export interface Jmbg {
+  JmbgValue: string;
+}
 
 export interface Gender {
   value: number;
@@ -15,7 +25,6 @@ export interface BloodType {
   rhFactor: number;
 }
 
-
 export interface BloodGroup {
   value: number;
   viewValue: string;
@@ -26,7 +35,6 @@ export interface RhFactor {
   viewValue: string;
 }
 
-
 export interface Allergies {
   name: string;
   id: string;
@@ -35,47 +43,40 @@ export interface Allergies {
 export interface Doctor {
   id: string;
   name: string;
-  surname: string
+  surname: string;
   patientCount: number;
 }
 
 export interface UserInfo {
   userLoginDto: {
-    username: string,
-    password: string
-  }
+    username: string;
+    password: string;
+  };
   addressRequestDto: {
-    city: string,
-    country: string,
-    street: string,
-    streetNumber: string
-  },
-  name: string,
-  surname: string,
-  birthdate: string,
-  gender: number,
-  jmbg: string,
-  email: string,
-  phoneNumber: string,
-  bloodType: BloodType,
-  allergieIds: string,
-  choosenDoctorId: string
+    city: string;
+    country: string;
+    street: string;
+    streetNumber: string;
+  };
+  name: string;
+  surname: string;
+  birthdate: string;
+  gender: number;
+  jmbg: Jmbg;
+  email: string;
+  phoneNumber: string;
+  bloodType: BloodType;
+  allergieIds: string;
+  choosenDoctorId: string;
 }
-
-
-
-
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-
-
   maxDate = new Date();
-
 
   bloodGroup: BloodGroup[] = [
     { value: 0, viewValue: 'O' },
@@ -86,12 +87,11 @@ export class RegisterComponent implements OnInit {
   selectedBloodGroup = this.bloodGroup[0].value;
 
   rhFactor: RhFactor[] = [
-    { value: 0, viewValue: "POSITIVE" },
-    { value: 1, viewValue: "NEGATIVE" },
-  ]
+    { value: 0, viewValue: 'POSITIVE' },
+    { value: 1, viewValue: 'NEGATIVE' },
+  ];
 
   selectedRhFactor = this.rhFactor[0].value;
-
 
   genders: Gender[] = [
     { value: 0, viewValue: 'Male' },
@@ -99,17 +99,15 @@ export class RegisterComponent implements OnInit {
   ];
   selectedGender = this.genders[0].value;
 
-  doctors: Doctor[] = [{ id: "", name: '', surname: "", patientCount: 0 }];
+  doctors: Doctor[] = [{ id: '', name: '', surname: '', patientCount: 0 }];
 
   selectedDoctor = this.doctors[0].id;
 
-
   allergiesList: Allergies[] = [];
-  allergiesListSelected = new FormControl("");
+  allergiesListSelected = new FormControl('');
 
   hide = true;
   registrationForm = new FormGroup({
-
     password: new FormControl<string>('', [Validators.required]),
     username: new FormControl<string>('', [Validators.required]),
     number: new FormControl<string>('', [Validators.required]),
@@ -120,88 +118,88 @@ export class RegisterComponent implements OnInit {
     surname: new FormControl<string>('', [Validators.required]),
     email: new FormControl<string>('', [Validators.required]),
     phoneNumber: new FormControl<string>('', [Validators.required]),
-    birthDate: new FormControl((new Date()).toISOString().substring(0, 10), [Validators.required]),
+    birthDate: new FormControl(new Date().toISOString().substring(0, 10), [
+      Validators.required,
+    ]),
 
-    jmbg: new FormControl<string>('', [Validators.required])
+    jmbg: new FormControl<string>('', [Validators.required]),
   });
 
-  errorMessage: string = "Fill the form data correctly";
+  errorMessage: string = 'Fill the form data correctly';
 
   myFilter = (d: Date | null): boolean => {
-    const day = (d || new Date())
+    const day = d || new Date();
     let today = new Date();
     return day < today;
   };
 
-
-  constructor(private readonly router: Router, private readonly allegrieService: AllegrieService, private readonly doctorService: DoctorService, private readonly userService: UserService) { }
+  constructor(
+    private readonly router: Router,
+    private readonly allegrieService: AllegrieService,
+    private readonly doctorService: DoctorService,
+    private readonly userService: UserService
+  ) {}
 
   ngOnInit(): void {
-
-    this.allegrieService.getsAllegries().subscribe(res => {
-
-      this.allergiesList = res
+    this.allegrieService.getsAllegries().subscribe((res) => {
+      this.allergiesList = res;
       console.table(res);
-    }
-    )
-    this.doctorService.getDoctorsWithLeastPatients().subscribe(res => {
-
+    });
+    this.doctorService.getDoctorsWithLeastPatients().subscribe((res) => {
       this.doctors = res;
       this.selectedDoctor = this.doctors[0].id;
-    }
-    );
-
+    });
   }
   get form() {
     return this.registrationForm.controls;
   }
 
   registerUser(): void {
-
-    this.errorMessage = "Fill the form data correctly";
+    this.errorMessage = 'Fill the form data correctly';
 
     let bloodType1: BloodType = {
       bloodGroup: this.selectedBloodGroup,
-      rhFactor: this.selectedRhFactor
-    }
+      rhFactor: this.selectedRhFactor,
+    };
 
+    let jmbg1: Jmbg = {
+      JmbgValue: this.form.jmbg.value ?? '',
+    };
 
     let dto: UserInfo = {
-
       userLoginDto: {
-        username: this.form.username.value ?? "",
-        password: this.form.password.value ?? "",
+        username: this.form.username.value ?? '',
+        password: this.form.password.value ?? '',
       },
       addressRequestDto: {
-        streetNumber: this.form.number.value ?? "",
-        city: this.form.city.value ?? "",
-        street: this.form.street.value ?? "",
-        country: this.form.country.value ?? "",
+        streetNumber: this.form.number.value ?? '',
+        city: this.form.city.value ?? '',
+        street: this.form.street.value ?? '',
+        country: this.form.country.value ?? '',
       },
 
-
-      name: this.form.name.value ?? "",
-      surname: this.form.surname.value ?? "",
-      birthdate: this.form.birthDate.value ?? "",
+      name: this.form.name.value ?? '',
+      surname: this.form.surname.value ?? '',
+      birthdate: this.form.birthDate.value ?? '',
       gender: this.selectedGender,
-      jmbg: this.form.jmbg.value ?? "",
-      phoneNumber: this.form.phoneNumber.value ?? "",
-      email: this.form.email.value ?? "",
+      jmbg: jmbg1,
+      phoneNumber: this.form.phoneNumber.value ?? '',
+      email: this.form.email.value ?? '',
       bloodType: bloodType1,
-      allergieIds: this.allergiesListSelected.value ?? "",
-      choosenDoctorId: this.selectedDoctor
-
-    }
+      allergieIds: this.allergiesListSelected.value ?? '',
+      choosenDoctorId: this.selectedDoctor,
+    };
 
     console.log(dto);
-    this.userService.registerUser(dto).subscribe(res => { this.router.navigate(['loginPage']) }
-      ,
-      err => {
+    this.userService.registerUser(dto).subscribe(
+      (res) => {
+        this.router.navigate(['loginPage']);
+      },
+      (err) => {
         console.log(err);
 
         this.errorMessage = err.error;
       }
-    )
+    );
   }
-
 }
