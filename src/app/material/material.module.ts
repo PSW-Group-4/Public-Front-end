@@ -47,7 +47,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { DialogModule } from '@angular/cdk/dialog';
-
+import { ReactiveFormsModule } from '@angular/forms';
 const Material = [
   CommonModule,
   MatInputModule,
@@ -98,6 +98,7 @@ const Material = [
   PortalModule,
   ScrollingModule,
   DialogModule,
+  ReactiveFormsModule
 ];
 
 @NgModule({
