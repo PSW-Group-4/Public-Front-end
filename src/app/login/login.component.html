@@ -2,10 +2,16 @@
   <p>Login</p>
   <div class="content" [formGroup]="loginForm">
     <div class="input-field">
-      <input formControlName="username" type="text" placeholder="Username" />
+      <input
+        id="username"
+        formControlName="username"
+        type="text"
+        placeholder="Username"
+      />
     </div>
     <div class="input-field">
       <input
+        id="password"
         formControlName="password"
         type="password"
         placeholder="Password"
@@ -14,7 +20,7 @@
   </div>
 
   <div class="action">
-    <button (click)="login()" class="login">Login</button>
+    <button id="loginBtn" (click)="login()" class="login">Login</button>
     <button class="register" routerLink="/register">Register</button>
   </div>
 </div>
