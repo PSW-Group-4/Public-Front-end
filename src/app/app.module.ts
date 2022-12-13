@@ -8,7 +8,7 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FeedbackTableComponent } from './feedback-table/feedback-table.component';
-import { CreateFeedbackComponent } from './create-feedback/create-feedback.component';
+//import { CreateFeedbackComponent } from './create-feedback/create-feedback.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { PatientHomeComponent } from './patient-home/patient-home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,18 +20,20 @@ import { MatSelectModule } from '@angular/material/select';
 import { NewsComponent } from './news/news.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TenderWinnerResponseComponent } from './tender-winner-response/tender-winner-response.component';
-
+import { ViewAllTendersComponent } from './tenders/view-all-tenders/view-all-tenders.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     FeedbackTableComponent,
-    CreateFeedbackComponent,
+    //CreateFeedbackComponent,
     routingComponents,
     LandingPageComponent,
     PatientHomeComponent,
     NewsComponent,
     TenderWinnerResponseComponent,
+    ViewAllTendersComponent
+    
   ],
   imports: [
     HttpClientModule,
@@ -45,7 +47,7 @@ import { TenderWinnerResponseComponent } from './tender-winner-response/tender-w
     RegisterModule,
     ReactiveFormsModule,
     MatSelectModule,
-    FlexLayoutModule,
+    //FlexLayoutModule,
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
