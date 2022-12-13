@@ -2,6 +2,7 @@
   <p></p>
   <p>Enter your feedback</p>
   <textarea
+    id="feedbackText"
     cols="100"
     rows="10"
     [(ngModel)]="feedbackRequestDto.text"
@@ -24,7 +25,7 @@
   </div>
 
   <p></p>
-  <button (click)="sendFeedback()">Send feedback</button>
+  <button id="sendFeedback" (click)="sendFeedback()">Send feedback</button>
   <p></p>
-  <p>{{ EnterAllFieldsCorrectlyMessage }}</p>
+  <p id="errorMessage">{{ EnterAllFieldsCorrectlyMessage }}</p>
 </div>

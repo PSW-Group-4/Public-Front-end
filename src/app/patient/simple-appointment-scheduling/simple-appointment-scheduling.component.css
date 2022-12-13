@@ -1,0 +1,5 @@
+/* https://stackoverflow.com/questions/46933953/angular-material-stepper-disable-header-navigation */
+/* disables header navigation in stepper */
+::ng-deep .mat-horizontal-stepper-header{
+    pointer-events: none !important;
+}

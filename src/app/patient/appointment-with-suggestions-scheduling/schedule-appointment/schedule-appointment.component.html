@@ -1,0 +1,100 @@
+<div>
+  <h1>Scheedule an appointment</h1>
+  <form [formGroup]="scheduleForm">
+    <div formGroupName="scheduleDate">
+      <mat-form-field>
+        <mat-label>Choose a start date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="scheduleStart"
+          [min]="scheduleMinDate"
+          formControlName="from"
+        />
+        <mat-datepicker-toggle
+          [for]="scheduleStart"
+          matSuffix
+        ></mat-datepicker-toggle>
+        <mat-datepicker #scheduleStart></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Choose an end date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="scheduleEnd"
+          [min]="scheduleMinDate"
+          formControlName="to"
+        />
+        <mat-datepicker-toggle
+          [for]="scheduleEnd"
+          matSuffix
+        ></mat-datepicker-toggle>
+        <mat-datepicker #scheduleEnd></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-select
+          placeholder="Choose a doctor"
+          formControlName="scheduleDoctor"
+        >
+          <ng-container *ngFor="let doctor of doctors">
+            <mat-option value="{{ doctor.id }}">{{
+              doctor.fullname
+            }}</mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select
+          placeholder="Choose a priority"
+          formControlName="schedulePriority"
+        >
+          <ng-container *ngFor="let priority of priorities">
+            <mat-option value="{{ priority }}">
+              {{ priority }}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field *ngIf="appointmentListVisible">
+        <mat-select
+          placeholder="Choose an appointment"
+          formControlName="scheduleAppointment"
+        >
+          <ng-container *ngFor="let appointment of appointments">
+            <mat-option value="appointment">
+              {{ appointment }}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <button
+      mat-raised-button
+      *ngIf="showFindButton"
+      (click)="findAppointments($event)"
+      [disabled]="scheduleForm.invalid"
+    >
+      Find available appointments
+    </button>
+    <button
+      mat-raised-button
+      *ngIf="!showFindButton"
+      [disabled]="canSchedule()"
+      (click)="confirmSchedule()"
+    >
+      Schedule
+    </button>
+    <button
+      mat-raised-button
+      *ngIf="!showFindButton"
+      [disabled]="scheduleForm.invalid"
+      (click)="cancel()"
+    >
+      Cancel
+    </button>
+  </form>
+</div>
