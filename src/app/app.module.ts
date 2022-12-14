@@ -22,7 +22,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SimpleAppointmentSchedulingModule } from './patient/simple-appointment-scheduling/simple-appointment-scheduling.module';
 import { AppointmentWithSuggestionsSchedulingModule } from './patient/appointment-with-suggestions-scheduling/appointment-with-suggestions-scheduling.module';
 import { TenderWinnerResponseComponent } from './tender-winner-response/tender-winner-response.component';
-
+import { ViewAllTendersComponent } from './tenders/view-all-tenders/view-all-tenders.component';
+import { ApplyToTenderComponent } from './tenders/apply-to-tender/apply-to-tender.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +35,9 @@ import { TenderWinnerResponseComponent } from './tender-winner-response/tender-w
     PatientHomeComponent,
     NewsComponent,
     TenderWinnerResponseComponent,
+    ViewAllTendersComponent,
+    ApplyToTenderComponent
+    
   ],
   imports: [
     HttpClientModule,
