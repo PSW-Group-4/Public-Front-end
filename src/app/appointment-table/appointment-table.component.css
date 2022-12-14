@@ -4,3 +4,11 @@ table {
 th {
     align-content: center;
 }
+
+.appBtn {
+  width: 70%;
+}
+
+.btnTable {
+  background-color: aqua;
+}

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Appointment } from '../model/Appointment';
+import { AppointmentService } from '../Services/appointment.service';
+import { MaterialModule } from '../material/material.module';
 
 @Component({
   selector: 'app-appointment-table',
@@ -9,25 +11,48 @@ import { Appointment } from '../model/Appointment';
 })
 export class AppointmentTableComponent implements OnInit {
 
-  appointments: Appointment[] = [
-    {id: '1', doctor: {name: 'Stojan', surname: 'Ludi'}, date: '1.1.2000.', time: '12:00', room: '69'},
-    {id: '2', doctor: {name: 'Stojan', surname: 'Ludi'}, date: '2.1.2000.', time: '8:00', room: '69'},
-    {id: '3', doctor: {name: 'Stojan', surname: 'Ludi'}, date: '3.1.2000.', time: '7:00', room: '69'},
-    {id: '4', doctor: {name: 'Stojan', surname: 'Ludi'}, date: '4.1.2000.', time: '10:00', room: '69'}
-  ];
-  displayedColumns = ['date', 'time', 'doctor', 'room', 'delete'];
+  appointments: Appointment[] = [];
+  dataSource: Appointment[] = [];
+  displayedColumns = ['time', 'doctor', 'room', 'delete'];
+  isFuture: boolean = true;
 
-  constructor() { }
+  constructor(private appointmentService: AppointmentService) { }
 
   ngOnInit(): void {
-    console.log(this.appointments)
+    this.appointmentService.getsAppointments('get-all-future').subscribe((res) => {
+      this.appointments = res;
+      this.dataSource = this.appointments
+    });
+    
   }
+
+  changeAppType(type: string): void {
+    if(type === 'get-all-future') {
+      this.isFuture = true;
+    }
+    else {
+      this.isFuture = false;
+    }
+    this.appointmentService.getsAppointments(type).subscribe((res) => {
+      this.appointments = res;
+      this.dataSource = this.appointments
+    });
+  } 
 
   btnClick(id: string): void {
-    alert(id);
+    this.appointmentService.cancelAppointment(id).subscribe((res) => {
+      if(res === id) {
+        this.appointmentService.getsAppointments('get-all-future').subscribe((res) => {
+          this.appointments = res;
+          this.dataSource = this.appointments
+        });
+      }
+      else {
+        alert("Nije moguce otazati ovaj pregled");
+      }
+    },(error) => {
+      alert(error.error);
+    });
   }
-
-  
-  dataSource = new MatTableDataSource(this.appointments);
 
 }
