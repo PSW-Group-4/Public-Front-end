@@ -1,0 +1,32 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" id="appointment-table">
+
+    <ng-container matColumnDef="time">
+      <th mat-header-cell *matHeaderCellDef> Time </th>
+      <td mat-cell *matCellDef="let appointment"> {{appointment.startTime | date: "d/M/yyyy HH:mm"}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="doctor">
+        <th mat-header-cell *matHeaderCellDef> Doctor </th>
+        <td mat-cell *matCellDef="let appointment"> {{appointment.doctorName}} {{appointment.doctorSurname}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="room">
+        <th mat-header-cell *matHeaderCellDef> Room number </th>
+        <td mat-cell *matCellDef="let appointment"> {{appointment.roomNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef [hidden]="!isFuture"> </th>
+        <td mat-cell *matCellDef="let appointment" [hidden]="!isFuture"> <button (click)="btnClick(appointment.id)">X</button> </td>
+      </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <table class="btnTable">
+    <tr>
+      <td><button mat-button color="primary" class="appBtn" (click)="changeAppType('get-all-future')">Future</button></td>
+      <td><button mat-button color="primary" class="appBtn" (click)="changeAppType('get-all-done')">Done</button></td>
+      <td><button mat-button color="primary" class="appBtn" (click)="changeAppType('get-all-canceled')">Canceled</button></td>
+    </tr>
+  </table>

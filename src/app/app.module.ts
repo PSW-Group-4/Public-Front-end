@@ -22,8 +22,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SimpleAppointmentSchedulingModule } from './patient/simple-appointment-scheduling/simple-appointment-scheduling.module';
 import { AppointmentWithSuggestionsSchedulingModule } from './patient/appointment-with-suggestions-scheduling/appointment-with-suggestions-scheduling.module';
 import { TenderWinnerResponseComponent } from './tender-winner-response/tender-winner-response.component';
+import { AppointmentTableComponent } from './appointment-table/appointment-table.component';
 import { ViewAllTendersComponent } from './tenders/view-all-tenders/view-all-tenders.component';
 import { ApplyToTenderComponent } from './tenders/apply-to-tender/apply-to-tender.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +37,7 @@ import { ApplyToTenderComponent } from './tenders/apply-to-tender/apply-to-tende
     PatientHomeComponent,
     NewsComponent,
     TenderWinnerResponseComponent,
+    AppointmentTableComponent,
     ViewAllTendersComponent,
     ApplyToTenderComponent
     
@@ -52,6 +55,8 @@ import { ApplyToTenderComponent } from './tenders/apply-to-tender/apply-to-tende
     ReactiveFormsModule,
     MatSelectModule,
     FlexLayoutModule,
+    SimpleAppointmentSchedulingModule,
+    AppointmentWithSuggestionsSchedulingModule
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
