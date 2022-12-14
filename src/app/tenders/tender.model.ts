@@ -1,11 +1,14 @@
-export class Tender {
-    bloodProduct: any[] = [];
-    ammount: number =0;
+import { Blood } from "./blood.model";
 
+export class Tender {
+    blood: Blood[] = [];
+    deadline: Date | undefined;
+    id : string = '';
     public constructor(obj?: any) {
         if (obj) {
-            this.bloodProduct = obj.bloodProduct;
-            this.ammount = obj.ammount;      
+            this.blood = obj.blood;
+            this.deadline = obj.deadline;   
+            this.id = obj.id;   
         }
     }
 }

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class TenderService {
 
-  apiHost: string = 'http://localhost:45488/';
+  apiHost: string = 'http://localhost:5000/';
   headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient) { }

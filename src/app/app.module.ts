@@ -8,7 +8,7 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FeedbackTableComponent } from './feedback-table/feedback-table.component';
-//import { CreateFeedbackComponent } from './create-feedback/create-feedback.component';
+import { CreateFeedbackComponent } from './create-feedback/create-feedback.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { PatientHomeComponent } from './patient-home/patient-home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,18 +23,20 @@ import { SimpleAppointmentSchedulingModule } from './patient/simple-appointment-
 import { AppointmentWithSuggestionsSchedulingModule } from './patient/appointment-with-suggestions-scheduling/appointment-with-suggestions-scheduling.module';
 import { TenderWinnerResponseComponent } from './tender-winner-response/tender-winner-response.component';
 import { ViewAllTendersComponent } from './tenders/view-all-tenders/view-all-tenders.component';
+import { ApplyToTenderComponent } from './tenders/apply-to-tender/apply-to-tender.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     FeedbackTableComponent,
-    //CreateFeedbackComponent,
+    CreateFeedbackComponent,
     routingComponents,
     LandingPageComponent,
     PatientHomeComponent,
     NewsComponent,
     TenderWinnerResponseComponent,
-    ViewAllTendersComponent
+    ViewAllTendersComponent,
+    ApplyToTenderComponent
     
   ],
   imports: [
@@ -49,7 +51,7 @@ import { ViewAllTendersComponent } from './tenders/view-all-tenders/view-all-ten
     RegisterModule,
     ReactiveFormsModule,
     MatSelectModule,
-    //FlexLayoutModule,
+    FlexLayoutModule,
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },

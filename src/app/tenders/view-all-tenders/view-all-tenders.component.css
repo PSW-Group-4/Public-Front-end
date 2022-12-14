@@ -41,10 +41,13 @@ table {
 }
 
 p {
-    float: left;
+    float: center;
     margin-right: auto;
 }
-
+h1{
+    float: center;
+    margin-right: auto;
+}
 .example-form {
     min-width: 150px;
     max-width: 500px;
