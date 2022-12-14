@@ -1,0 +1,35 @@
+<div class="basic-container">
+    <h1 style="text-align: left;">
+        Tenders
+    </h1>
+    <mat-grid-list cols="4" rowHeight="400px" gutterSize="20px">
+        <mat-grid-tile *ngFor="let i of tenders">
+            <mat-card [style.width]="'100%'" class="tile">
+                <div [style.height]="'100%'" fxLayout="row">
+
+                    <div [style.height]="'100%'" fxFlex fxFlexAlign="center" fxLayout="column">
+                        <div  *ngFor="let k of i.blood">
+                            <small>Lasts until: {{i.deadline}}</small>                           
+                                <br>
+                                <div style="text-align: center;">
+                                    <br>
+                                    <p *ngIf="k.bloodType?.bloodGroup === 0">blood type: O </p>            
+                                    <p *ngIf="k.bloodType?.bloodGroup === 1">blood type: A </p>
+                                    <p *ngIf="k.bloodType?.bloodGroup === 2">blood type: B </p>
+                                    <p *ngIf="k.bloodType?.bloodGroup === 3">blood type: AB </p>      
+                                    <p *ngIf="k.bloodType?.rhFactor=== 0">RH factor: +</p>                         
+                                    <p *ngIf="k.bloodType?.rhFactor === 1"> -</p>                        
+                                    <br>
+                                    <p>blood amount:{{k.amount}}</p>
+                                </div>
+                        </div>
+                        <div fxLayout="row" [style.flex]="'1'" style="text-align: left;">
+                            <button (click)="apply(i)">Apply</button>
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+</div>

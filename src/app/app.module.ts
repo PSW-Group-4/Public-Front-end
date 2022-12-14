@@ -23,6 +23,8 @@ import { SimpleAppointmentSchedulingModule } from './patient/simple-appointment-
 import { AppointmentWithSuggestionsSchedulingModule } from './patient/appointment-with-suggestions-scheduling/appointment-with-suggestions-scheduling.module';
 import { TenderWinnerResponseComponent } from './tender-winner-response/tender-winner-response.component';
 import { AppointmentTableComponent } from './appointment-table/appointment-table.component';
+import { ViewAllTendersComponent } from './tenders/view-all-tenders/view-all-tenders.component';
+import { ApplyToTenderComponent } from './tenders/apply-to-tender/apply-to-tender.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,9 @@ import { AppointmentTableComponent } from './appointment-table/appointment-table
     NewsComponent,
     TenderWinnerResponseComponent,
     AppointmentTableComponent,
+    ViewAllTendersComponent,
+    ApplyToTenderComponent
+    
   ],
   imports: [
     HttpClientModule,
@@ -50,6 +55,8 @@ import { AppointmentTableComponent } from './appointment-table/appointment-table
     ReactiveFormsModule,
     MatSelectModule,
     FlexLayoutModule,
+    SimpleAppointmentSchedulingModule,
+    AppointmentWithSuggestionsSchedulingModule
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },

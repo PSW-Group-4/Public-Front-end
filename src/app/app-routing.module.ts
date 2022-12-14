@@ -10,7 +10,7 @@ import { IncognitoGuard } from './auth/guards/incognito-guard.service';
 import { RegisterComponent } from './register/register/register.component';
 import { NewsComponent } from './news/news.component';
 import { TenderWinnerResponseComponent } from './tender-winner-response/tender-winner-response.component';
-
+import { ViewAllTendersComponent } from './tenders/view-all-tenders/view-all-tenders.component';
 //TODO: auth guard for bloodBanks
 const routes: Routes = [
   {
@@ -35,8 +35,10 @@ const routes: Routes = [
     loadChildren: () => import('./patient/patient-routing.module').then(m => m.PatientRoutingModule)
   },
   { path: 'tender/winner', component: TenderWinnerResponseComponent },
+  { path: 'tender', component: ViewAllTendersComponent},
   { path: '', redirectTo: 'landingPage', pathMatch: 'full' },
   { path: '**', redirectTo: 'landingPage', pathMatch: 'full' },
+  
 ];
 
 @NgModule({
@@ -50,5 +52,6 @@ export const routingComponents = [
   PatientHomeComponent,
   NewsComponent,
   LoginComponent,
-  TenderWinnerResponseComponent
+  TenderWinnerResponseComponent,
+  ViewAllTendersComponent,
 ];
