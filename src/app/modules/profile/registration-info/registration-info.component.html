@@ -35,7 +35,7 @@
             <mat-card class="fields">
               <mat-card-content
                 ><ng-container *ngIf="patientRegistrationInfo">{{
-                  patientRegistrationInfo.bloodType
+                  patientRegistrationInfo.bloodTypeShow
                 }}</ng-container></mat-card-content
               >
             </mat-card>
@@ -70,9 +70,9 @@
               ><mat-card class="fields">
                 <mat-card-content>
                   {{
-                    patientRegistrationInfo.choosenDoctor.name +
+                    patientRegistrationInfo.chosenDoctor.name +
                       " " +
-                      patientRegistrationInfo.choosenDoctor.surname
+                      patientRegistrationInfo.chosenDoctor.surname
                   }}
                 </mat-card-content>
               </mat-card></ng-container
