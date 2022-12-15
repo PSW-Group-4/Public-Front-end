@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ConstSettings } from '../../constSettings';
 import { Jwt } from '../Model/Jwt.model';
@@ -43,11 +43,14 @@ export class LoginService {
           localStorage.setItem('jwt', response.jwt);
           this.redirectToMainPage();
         },
-        //TODO: handle errors
-        error: (err) => {
-
-          alert(err.error);
-
+        error: (err : HttpErrorResponse) => {
+          if(err.status == 403){
+            alert("Account not activated");
+          }
+          else
+          {
+            alert(err.error);
+          }
         },
       });
   };
