@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PersonFullname} from '../Model/PersonFullname';
-import { DateRangeCustom} from '../Model/DateRangeCustom';
+import { DateRangeCustom, dateRangeStringToDate} from '../Model/DateRangeCustom';
 import { DoctorService } from '../http-services/doctor.service';
 import { Router } from '@angular/router';
 import {IncomingDateValidator} from '../utilities/incoming-date.validator'
+import { AppointmentService } from '../http-services/appointment.service';
+import { ScheduleAppointmentRequest } from '../Model/ScheduleAppointmentRequest';
+import { AvailableTimesRequest } from '../Model/AvailableTimesRequest';
 
 @Component({
   selector: 'app-simple-appointment-scheduling',
@@ -29,7 +32,9 @@ export class SimpleAppointmentSchedulingComponent implements OnInit {
   appointmentScheduled: boolean = false;
 
 
-  constructor(private readonly doctorService : DoctorService, private readonly router : Router) { }
+  constructor(private readonly doctorService : DoctorService,
+              private readonly appointmentService : AppointmentService,
+               private readonly router : Router) { }
 
   get doctorNames()
   {
@@ -46,20 +51,35 @@ export class SimpleAppointmentSchedulingComponent implements OnInit {
   get availableTimesString() : string[]
   {
       let availableTimesString: string[] = [];
-      this.availableTimes.forEach(time => {
-        let timeStringStart = time.timeStart.getFullYear() + "." +
-          time.timeStart.getMonth() + "." + 
-          time.timeStart.getDate() + " " + 
-          time.timeStart.getHours() + ":" + 
-          time.timeStart.getMinutes();
+      this.availableTimes.forEach((time : DateRangeCustom) => {
+        let timeStringStart = time.startTime.getFullYear() + "." +
+          time.startTime.getMonth() + "." + 
+          time.startTime.getDate() + " " + 
+          time.startTime.getHours() + ":";
+          if(time.startTime.getMinutes() < 10)
+          {
+             timeStringStart += '0' + time.startTime.getMinutes();
+          }
+          else
+          {
+             timeStringStart += time.startTime.getMinutes();
+          }
+           
 
-        let timeStringEnd = time.timeEnd.getFullYear() + "." +
-          time.timeEnd.getMonth() + "." + 
-          time.timeEnd.getDate() + " " + 
-          time.timeEnd.getHours() + ":" + 
-          time.timeEnd.getMinutes();
+        let timeStringEnd = time.endTime.getFullYear() + "." +
+          time.endTime.getMonth() + "." + 
+          time.endTime.getDate() + " " + 
+          time.endTime.getHours() + ":";
+          if(time.endTime.getMinutes() < 10)
+          {
+             timeStringEnd += '0' + time.endTime.getMinutes();
+          }
+          else
+          {
+             timeStringEnd += time.endTime.getMinutes();
+          }
           
-        availableTimesString.push(timeStringEnd + " - " + timeStringEnd);
+        availableTimesString.push(timeStringStart + " - " + timeStringEnd);
 
       })
       return availableTimesString;
@@ -88,7 +108,7 @@ export class SimpleAppointmentSchedulingComponent implements OnInit {
 
       let specialty = this.specialties[this.selectedSpecialtyIndex];
       if(!specialty) return;
-      this.doctorService.GetDoctorsWithSpecialty(specialty).subscribe(
+      this.doctorService.getDoctorsWithSpecialty(specialty).subscribe(
         (response: PersonFullname[]) => {
           this.doctors = response;
         }
@@ -100,38 +120,18 @@ export class SimpleAppointmentSchedulingComponent implements OnInit {
     this.selectedDoctorIndex = index;
   }
 
-  //TODO integrate with backend
   GetAvailableTimes = () =>
   {
-    console.log("**Gets available times**");
-    console.log({
+    this.appointmentService.getAvailableTimes({
         doctorId: this.doctors[this.selectedDoctorIndex].id,
         date: this.selectedDate
+    }).subscribe( (response: DateRangeCustom[]) =>{
+      this.availableTimes = response;
+      this.availableTimes.forEach(time =>{
+        //For some reason it doesnt do this conversion automatically
+        time = dateRangeStringToDate(time);
+      })
     })
-
-    this.availableTimes = [];
-    this.availableTimes.push({
-        timeStart:new Date(2022,5,5,17,0),
-        timeEnd:new Date(2022,5,5,17,30)
-      });
-
-    this.availableTimes.push({
-        timeStart:new Date(2022,5,5,18,0),
-        timeEnd:new Date(2022,5,5,18,30)
-      });
-
-    this.availableTimes.push({
-          timeStart:new Date(2022,5,5,19,0),
-          timeEnd:new Date(2022,5,5,19,30)
-      });
-
-    //Needs implemented backend
-    // this.doctorService.GetAvailableTimes({
-    //     doctorId: this.doctors[this.selectedDoctorIndex].id,
-    //     date: this.selectedDate
-    // }).subscribe( (response: DateRangeCustom[]) =>{
-    //   this.availableTimes = response;
-    // })
   }
 
   selectTime = (index: number) =>
@@ -139,14 +139,15 @@ export class SimpleAppointmentSchedulingComponent implements OnInit {
     this.selectedTimeIndex = index;
   }
 
-  //TODO integrate with backend
   scheduleAppointment  = () =>
   {
-    console.log("**schedules appointment**");
-    console.log({
+    let dto : AvailableTimesRequest = {
       doctorId: this.doctors[this.selectedDoctorIndex].id,
-      time: this.availableTimes[this.selectedTimeIndex]
-    })
-      this.appointmentScheduled = true; 
+      date: this.availableTimes[this.selectedTimeIndex].startTime
+    }
+
+    this.appointmentService.schedule(dto).subscribe(_ => {
+        this.appointmentScheduled = true; 
+    });
   }
 }
