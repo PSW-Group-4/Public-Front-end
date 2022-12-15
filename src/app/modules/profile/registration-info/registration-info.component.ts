@@ -14,42 +14,42 @@ export class RegistrationInfoComponent implements OnInit {
   constructor(
     private registrationInfoService: RegistrationInfoService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.registrationInfoService.getLoggedInPatient().subscribe((res) => {
       this.patientRegistrationInfo = res;
+      console.table(this.patientRegistrationInfo)
       this.getBloodType();
       console.log(this.patientRegistrationInfo.bloodType);
     });
   }
 
   getBloodType() {
-    switch (this.patientRegistrationInfo.bloodType) {
+    switch (this.patientRegistrationInfo.bloodType.bloodGroup) {
       case 0:
-        this.patientRegistrationInfo.bloodType = 'A_POS';
+        this.patientRegistrationInfo.bloodTypeShow = 'O';
         break;
       case 1:
-        this.patientRegistrationInfo.bloodType = 'A_NEG';
+        this.patientRegistrationInfo.bloodTypeShow = 'A';
         break;
       case 2:
-        this.patientRegistrationInfo.bloodType = 'B_POS';
+        this.patientRegistrationInfo.bloodTypeShow = 'B';
         break;
       case 3:
-        this.patientRegistrationInfo.bloodType = 'B_NEG';
+        this.patientRegistrationInfo.bloodTypeShow = 'AB';
         break;
-      case 4:
-        this.patientRegistrationInfo.bloodType = 'O_POS';
+
+    }
+    switch (this.patientRegistrationInfo.bloodType.rhFactor) {
+      case 0:
+        this.patientRegistrationInfo.bloodTypeShow += ' POSTITIVE';
         break;
-      case 5:
-        this.patientRegistrationInfo.bloodType = 'O_NEG';
+      case 1:
+        this.patientRegistrationInfo.bloodTypeShow += ' NEGATIVE';
         break;
-      case 6:
-        this.patientRegistrationInfo.bloodType = 'AB_POS';
-        break;
-      case 7:
-        this.patientRegistrationInfo.bloodType = 'AB_NEG';
-        break;
+
+
     }
   }
 }
