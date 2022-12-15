@@ -160,10 +160,17 @@ export class ScheduleAppointmentComponent implements OnInit {
 
   /*private isDateRangeValid(control: FormControl) {
     if (control === this.scheduleForm.get('scheduleDate.from')) {
+<<<<<<< HEAD
       if (control.value > this.appointmentScheduleInfo.StartDate) {
         return { dateRangeNotValid: true };
       } else return null;
     } else if (control.value < this.appointmentScheduleInfo.EndDate) {
+=======
+      if (control.value > this.appointmentScheduleInfo.time.endTime) {
+        return { dateRangeNotValid: true };
+      } else return null;
+    } else if (control.value < this.appointmentScheduleInfo.time.startTime) {
+>>>>>>> 341d00bd (Commit so I can pull develop)
       console.log('test');
       return { dateRangeNotValid: true };
     } else return null;

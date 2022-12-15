@@ -19,20 +19,13 @@ export class DoctorService {
     return this.http.get<string[]>(path);
   };
 
-  GetDoctorsWithSpecialty = (
+  getDoctorsWithSpecialty = (
     specialty: string
   ): Observable<PersonFullname[]> => {
     let path = this.basePath + '/specialties/' + specialty;
     return this.http.get<PersonFullname[]>(path);
   };
 
-  GetAvailableTimes = (
-    dto: AvailableTimesRequest
-  ): Observable<DateRangeCustom[]> => {
-    //let path = this.basePath + "/specialties/" + specialty;
-    let path = '';
-    return this.http.get<DateRangeCustom[]>(path);
-  };
 
   getAll = (): Observable<PersonFullname[]> => {
     let path = this.basePath + '/basicInfo';
