@@ -21,14 +21,15 @@ export class IncognitoGuard implements CanActivate {
   private redirectToMainPage = () =>
   {
     var roleLandingPages = new Map<string, string>([
-      ['Patient', 'patient']
+      ['Patient', 'patient'],
+      ['BloodBank', "BloodBank"]
     ]);
 
       const token = localStorage.getItem('jwt');
       const tokenPayload = this.jwtHelper.decodeToken(token!);
       const role = tokenPayload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
 
-      this.router.navigate([roleLandingPages.get(role)]);         
+      this.router.navigate([roleLandingPages.get(role)]);
   }
 
 }

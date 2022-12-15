@@ -29,6 +29,21 @@ export class LoginService {
     this.router.navigate([roleLandingPages.get(role)]);
   };
 
+  public bloodBankLogin = (loginCredentials: LoginDto): void => {
+    this.http.post<Jwt>('localhost:5000/api/BloodBank/login', loginCredentials, {
+      headers: ConstSettings.standardHeader,
+    })
+      .subscribe({
+        next: (response) => {
+          localStorage.setItem('jwt', response.jwt);
+          this.redirectToMainPage();
+        },
+        error: err => {
+          alert(err.message);
+        }
+      });
+  }
+
   public login = (loginCredentials: LoginDto): void => {
     this.http
       .post<Jwt>(
