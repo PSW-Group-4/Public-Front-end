@@ -13,6 +13,7 @@ import {
 } from '@angular/forms';
 import { DoctorService } from '../../http-services/doctor.service';
 import { Router } from '@angular/router';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-schedule-appointment',
@@ -98,18 +99,23 @@ export class ScheduleAppointmentComponent implements OnInit {
         { value: this.priorities[0], disabled: false },
         [Validators.required],
       ],
-      scheduleAppointment: [
-        { value: 'temp', disabled: false },
-        [Validators.required],
-      ],
+      scheduleAppointment: [{ value: this.test(), disabled: false }],
     });
     this.scheduleForm.valueChanges.subscribe((currValue) => {
       this.appointmentScheduleInfo.DoctorId = currValue.scheduleDoctor;
       this.appointmentScheduleInfo.Priority = currValue.schedulePriority;
       this.appointmentScheduleInfo.StartDate = currValue.scheduleDate.from;
       this.appointmentScheduleInfo.EndDate = currValue.scheduleDate.to;
-      this.selectedAppointment.doctorId = currValue.scheduleAppointment;
+      //this.selectedAppointment.doctorId = currValue.scheduleAppointment;
+      this.selectedAppointment.date = currValue.scheduleAppointment;
     });
+  }
+
+  test() {
+    if (this.appointments[0] === undefined) {
+      return new Date();
+    }
+    return this.appointments[0].startTime;
   }
 
   findAppointments(event: Event) {
@@ -126,7 +132,7 @@ export class ScheduleAppointmentComponent implements OnInit {
   }
 
   canSchedule() {
-    if (this.selectedAppointment.doctorId === 'temp') return true;
+    //if (this.selectedAppointment.date === new Date()) return true;
     return false;
   }
 
@@ -140,8 +146,9 @@ export class ScheduleAppointmentComponent implements OnInit {
 
     this.selectedAppointment.doctorId =
       this.scheduleForm.get('scheduleDoctor')?.value;
-    this.selectedAppointment.date =
-      this.scheduleForm.get('scheduleDate.from')?.value;
+    this.selectedAppointment.date = this.scheduleForm.get(
+      'scheduleAppointment'
+    )?.value;
 
     this.doctorService
       .ScheduleWithSuggestions(this.selectedAppointment)
