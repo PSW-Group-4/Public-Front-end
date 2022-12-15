@@ -1,5 +1,6 @@
 table {
     width: 100%;
+    table-layout: fixed;
   }
 th {
     align-content: center;
@@ -7,8 +8,29 @@ th {
 
 .appBtn {
   width: 70%;
+  background-color: white;
+  color: black;
 }
 
 .btnTable {
-  background-color: aqua;
+  background-color: lightgreen;
+  table-layout: fixed;
+}
+
+#cacnelBtn {
+  color: black;
+}
+
+::ng-deep .mat-header-cell {
+  justify-content:center;
+}
+
+td, th {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.tableName {
+  background-color: lightgreen;
+  color: white;
 }
