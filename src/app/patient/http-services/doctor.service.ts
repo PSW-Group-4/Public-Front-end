@@ -5,7 +5,7 @@ import { ConstSettings } from 'src/app/constSettings';
 import { PersonFullname } from '../Model/PersonFullname';
 import { AvailableTimesRequest } from '../Model/AvailableTimesRequest';
 import { DateRangeCustom } from '../Model/DateRangeCustom';
-import { ScheduleAppointmentSuggestion } from '../Model/ScheduleAppointmentSuggestion';
+import { ScheduleAppointmentSuggestion } from '../Model/RequestForAppointmentTimeSlotSuggestions';
 
 @Injectable({
   providedIn: 'root',
@@ -39,17 +39,22 @@ export class DoctorService {
     return this.http.get<PersonFullname[]>(path);
   };
 
-  //TODO Implementirati back-end deo
-  findAppropriateAppointments(
+  FindAppropriateAppointments(
     appointmentScheduleInfo: ScheduleAppointmentSuggestion
   ) {
-    return ['App1', 'App2', 'App3'];
+    let path =
+      ConstSettings.apiHost +
+      'api/MedicalAppointment/' +
+      'patient-appointment-request-with-suggestions';
+    return this.http.post<ScheduleAppointmentSuggestion>(
+      path,
+      appointmentScheduleInfo
+    );
   }
 
-  //TODO Implementirati back-end deo
-  scheduleWithSuggestions(appointment: any): Observable<any> {
-    //let path = this.basePath + '/schedule-with-suggestion';
-    let path = '';
-    return this.http.post<any>(path, appointment);
+  ScheduleWithSuggestions(appointment: AvailableTimesRequest): Observable<any> {
+    let path =
+      ConstSettings.apiHost + 'api/MedicalAppointment/schedule-patient';
+    return this.http.post<AvailableTimesRequest>(path, appointment);
   }
 }
