@@ -11,12 +11,19 @@ import { RegisterComponent } from './register/register/register.component';
 import { NewsComponent } from './news/news.component';
 import { TenderWinnerResponseComponent } from './tender-winner-response/tender-winner-response.component';
 import { ViewAllTendersComponent } from './tenders/view-all-tenders/view-all-tenders.component';
+import {BloodBankLoginComponent} from "./blood-bank/blood-bank-login/blood-bank-login.component";
+import {BloodBankHomeComponent} from "./blood-bank/blood-bank-home/blood-bank-home-component";
 //TODO: auth guard for bloodBanks
 const routes: Routes = [
   {
     path: 'loginPage',
     component: LoginComponent,
     canActivate: [IncognitoGuard],
+  },
+  {
+    path: 'login/bloodBank',
+    component: BloodBankLoginComponent,
+    canActivate: [IncognitoGuard]
   },
   {
     path: 'register',
@@ -34,11 +41,14 @@ const routes: Routes = [
     data :{expectedRole: 'Patient'},
     loadChildren: () => import('./patient/patient-routing.module').then(m => m.PatientRoutingModule)
   },
-  { path: 'tender/winner', component: TenderWinnerResponseComponent },
-  { path: 'tender', component: ViewAllTendersComponent},
+  {
+    path: 'bloodBank', component: BloodBankHomeComponent, canActivate: [RoleGuard],
+    data: { expectedRole: 'BloodBank'},
+    loadChildren: () => import('./blood-bank/blood-bank-routing.module').then(m => m.BloodBankRoutingModule)
+  },
   { path: '', redirectTo: 'landingPage', pathMatch: 'full' },
   { path: '**', redirectTo: 'landingPage', pathMatch: 'full' },
-  
+
 ];
 
 @NgModule({
