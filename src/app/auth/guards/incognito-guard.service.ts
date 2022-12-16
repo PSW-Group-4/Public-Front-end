@@ -22,7 +22,7 @@ export class IncognitoGuard implements CanActivate {
   {
     var roleLandingPages = new Map<string, string>([
       ['Patient', 'patient'],
-      ['BloodBank', "BloodBank"]
+      ['BloodBank', "bloodBank"]
     ]);
 
       const token = localStorage.getItem('jwt');
