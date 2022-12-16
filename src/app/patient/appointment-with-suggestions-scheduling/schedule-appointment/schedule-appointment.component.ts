@@ -13,6 +13,8 @@ import {
 } from '@angular/forms';
 import { DoctorService } from '../../http-services/doctor.service';
 import { Router } from '@angular/router';
+import { formatDate } from '@angular/common';
+import { AppointmentSuggestionsWithRespectiveDoctor } from '../../Model/AppointmentSuggestionsWithRespectiveDoctor';
 
 @Component({
   selector: 'app-schedule-appointment',
@@ -26,7 +28,7 @@ export class ScheduleAppointmentComponent implements OnInit {
   scheduleForm: FormGroup;
 
   //temp
-  appointments: any = [];
+  appointments: AppointmentSuggestionsWithRespectiveDoctor[] = [];
   //temp
   selectedAppointment: AvailableTimesRequest = {
     doctorId: '-1',
@@ -57,7 +59,7 @@ export class ScheduleAppointmentComponent implements OnInit {
       scheduleDate: dateRange,
       scheduleDoctor: {},
       schedulePriority: this.priorities[0],
-      scheduleAppointment: [],
+      scheduleAppointment: {},
     });
   }
 
@@ -99,8 +101,7 @@ export class ScheduleAppointmentComponent implements OnInit {
         [Validators.required],
       ],
       scheduleAppointment: [
-        { value: 'temp', disabled: false },
-        [Validators.required],
+        { value: this.GetScheduledAppointmentDate(), disabled: false },
       ],
     });
     this.scheduleForm.valueChanges.subscribe((currValue) => {
@@ -108,8 +109,30 @@ export class ScheduleAppointmentComponent implements OnInit {
       this.appointmentScheduleInfo.Priority = currValue.schedulePriority;
       this.appointmentScheduleInfo.StartDate = currValue.scheduleDate.from;
       this.appointmentScheduleInfo.EndDate = currValue.scheduleDate.to;
-      this.selectedAppointment.doctorId = currValue.scheduleAppointment;
+      //this.selectedAppointment.doctorId = currValue.scheduleAppointment;
+      //this.selectedAppointment.date =
+      //currValue.scheduleAppointment.appointmentSuggestions.startTime;
+      //this.selectedAppointment.doctorId = currValue.scheduleAppointment.Id;
     });
+  }
+
+  GetScheduledAppointmentDate() {
+    if (this.appointments[0] === undefined) {
+      //return new Date();
+      return [
+        {
+          appointmentSuggestions: {
+            startTime: new Date(),
+            endTime: new Date(),
+          },
+          id: '',
+          name: '',
+          surname: '',
+        },
+      ];
+    }
+    //return this.appointments[0].appointmentSuggestions.startTime;
+    return this.appointments[0];
   }
 
   findAppointments(event: Event) {
@@ -120,34 +143,53 @@ export class ScheduleAppointmentComponent implements OnInit {
     this.doctorService
       .FindAppropriateAppointments(this.appointmentScheduleInfo)
       .subscribe((res) => {
-        console.log(res);
+        //console.log(res);
         this.appointments = res;
+        //console.log(this.appointments);
       });
   }
 
   canSchedule() {
-    if (this.selectedAppointment.doctorId === 'temp') return true;
+    //if (this.selectedAppointment.date === new Date()) return true;
     return false;
   }
 
-  //TODO implementirati back-end deo
   confirmSchedule() {
     console.log('Zakazi');
 
     this.appointmentListVisible = !this.appointmentListVisible;
     this.showFindButton = true;
+
+    this.GetAppointmentByStartTime();
+
     this.appointments = [];
 
-    this.selectedAppointment.doctorId =
+    /*this.selectedAppointment.doctorId =
       this.scheduleForm.get('scheduleDoctor')?.value;
-    this.selectedAppointment.date =
-      this.scheduleForm.get('scheduleDate.from')?.value;
+    this.selectedAppointment.date = this.scheduleForm.get(
+      'scheduleAppointment'
+    )?.value;*/
 
     this.doctorService
       .ScheduleWithSuggestions(this.selectedAppointment)
       .subscribe((res) => console.log(res));
 
     this.router.navigate(['info']);
+  }
+
+  GetAppointmentByStartTime() {
+    let appointmentStartTime = this.scheduleForm.get(
+      'scheduleAppointment'
+    )?.value;
+    console.log(this.appointments);
+
+    this.appointments.forEach((element) => {
+      if (element.appointmentSuggestions.startTime === appointmentStartTime) {
+        this.selectedAppointment.doctorId = element.id;
+        this.selectedAppointment.date =
+          element.appointmentSuggestions.startTime;
+      }
+    });
   }
 
   cancel() {
@@ -160,17 +202,10 @@ export class ScheduleAppointmentComponent implements OnInit {
 
   /*private isDateRangeValid(control: FormControl) {
     if (control === this.scheduleForm.get('scheduleDate.from')) {
-<<<<<<< HEAD
       if (control.value > this.appointmentScheduleInfo.StartDate) {
         return { dateRangeNotValid: true };
       } else return null;
     } else if (control.value < this.appointmentScheduleInfo.EndDate) {
-=======
-      if (control.value > this.appointmentScheduleInfo.time.endTime) {
-        return { dateRangeNotValid: true };
-      } else return null;
-    } else if (control.value < this.appointmentScheduleInfo.time.startTime) {
->>>>>>> 341d00bd (Commit so I can pull develop)
       console.log('test');
       return { dateRangeNotValid: true };
     } else return null;
