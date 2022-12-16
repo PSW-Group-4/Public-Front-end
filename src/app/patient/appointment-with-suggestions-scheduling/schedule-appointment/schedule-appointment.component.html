@@ -65,8 +65,12 @@
           formControlName="scheduleAppointment"
         >
           <ng-container *ngFor="let appointment of appointments">
-            <mat-option value="{{ appointment.startTime }}">
-              {{ appointment.startTime }} - {{ appointment.endTime }}
+            <mat-option
+              value="{{ appointment.appointmentSuggestions.startTime }}"
+            >
+              {{ appointment.appointmentSuggestions.startTime }} -
+              {{ appointment.appointmentSuggestions.endTime }} /
+              {{ appointment.name }} {{ appointment.surname }}
             </mat-option>
           </ng-container>
         </mat-select>

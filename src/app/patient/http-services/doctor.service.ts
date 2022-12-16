@@ -6,6 +6,7 @@ import { PersonFullname } from '../Model/PersonFullname';
 import { AvailableTimesRequest } from '../Model/AvailableTimesRequest';
 import { DateRangeCustom } from '../Model/DateRangeCustom';
 import { ScheduleAppointmentSuggestion } from '../Model/RequestForAppointmentTimeSlotSuggestions';
+import { AppointmentSuggestionsWithRespectiveDoctor } from '../Model/AppointmentSuggestionsWithRespectiveDoctor';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +27,6 @@ export class DoctorService {
     return this.http.get<PersonFullname[]>(path);
   };
 
-
   getAll = (): Observable<PersonFullname[]> => {
     let path = this.basePath + '/basicInfo';
     return this.http.get<PersonFullname[]>(path);
@@ -34,12 +34,12 @@ export class DoctorService {
 
   FindAppropriateAppointments(
     appointmentScheduleInfo: ScheduleAppointmentSuggestion
-  ) {
+  ): Observable<AppointmentSuggestionsWithRespectiveDoctor[]> {
     let path =
       ConstSettings.apiHost +
       'api/MedicalAppointment/' +
       'patient-appointment-request-with-suggestions';
-    return this.http.post<ScheduleAppointmentSuggestion>(
+    return this.http.post<AppointmentSuggestionsWithRespectiveDoctor[]>(
       path,
       appointmentScheduleInfo
     );
