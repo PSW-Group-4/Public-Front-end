@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {RouterOutlet, Routes} from '@angular/router';
+import {RouterLinkWithHref, RouterOutlet, Routes} from '@angular/router';
 import { BloodBankLoginComponent } from './blood-bank-login/blood-bank-login.component';
 import { BloodBankHomeComponent } from './blood-bank-home/blood-bank-home-component';
 
@@ -23,13 +23,14 @@ const routes: Routes = [
   ,
 
 
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    RouterOutlet
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        RouterOutlet,
+        RouterLinkWithHref
+    ]
 })
 export class BloodBankModule { }
