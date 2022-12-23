@@ -104,17 +104,23 @@
       *ngFor="let element of allNews; index as i"
       class="newsCard"
       [ngStyle]="{
-        webkitAnimationDelay: -4 * i + 's',
-        webkitAnimationDuration: 4 * allNews.length + 's',
+        webkitAnimationDelay: -1 * i + 's',
+        webkitAnimationDuration: allNews.length + 's',
         background:
           'linear-gradient(-' +
           i +
-          '110deg, cyan, rgb(' +
+          '110deg, rgb(' +
           +(255 - (i % 255)) +
           ', ' +
-          (255 - (i % 255)) +
+          (255 - ((20 * i + 200) % 255)) +
           ',' +
-          (255 - (i % 255)) +
+          (255 - ((200 * i * i + 115) % 255)) +
+          ' ), rgb(' +
+          +(255 - ((100 * i) % 255)) +
+          ', ' +
+          (255 - ((i * i * i) % 255)) +
+          ',' +
+          (255 - ((20 * i * i) % 255)) +
           ' ))'
       }"
     >

@@ -67,18 +67,18 @@ mat-grid-tile {
 
 @keyframes animationCarousel {
   from {
-    -webkit-transform: rotateY(360deg) translateZ(250px) rotateY(-360deg);
+    -webkit-transform: rotateY(-360deg) translateZ(400px) rotateY(360deg);
     z-index: 1000;
     opacity: 1;
   }
 
   50% {
     z-index: -1000;
-    opacity: 0.001;
+    opacity: 0.0005;
   }
 
   to {
-    -webkit-transform: rotateY(0deg) translateZ(250px) rotateY(0deg);
+    -webkit-transform: rotateY(0deg) translateZ(400px) rotateY(0deg);
     z-index: 1000;
     opacity: 1;
   }
@@ -103,4 +103,5 @@ mat-grid-tile {
 .newsCard:hover {
   box-shadow: 0px 0px 30px white;
   border: 2px solid white;
+  -webkit-animation-name: animationCarousel;
 }

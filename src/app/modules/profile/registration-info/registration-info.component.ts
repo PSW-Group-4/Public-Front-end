@@ -2,6 +2,7 @@ import { PatientDto } from './../model/patientDto.model';
 import { RegistrationInfoService } from './../services/registration-info.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { NewsService } from 'src/app/Services/news.service';
 
 export interface NewsHeadlines {
 
@@ -17,19 +18,13 @@ export interface NewsHeadlines {
 export class RegistrationInfoComponent implements OnInit {
   patientRegistrationInfo: any;
 
-  public allNews: NewsHeadlines[] = [
-    { headline: "Vest 1" },
-    { headline: "Vest 2" },
-    { headline: "Vest 3" },
-    { headline: "Vest 4" },
-    { headline: "Vest 5" },
-    { headline: "Vest 7" },
-    { headline: "Vest 8" },
-  ]
+  public allNews: NewsHeadlines[] = []
+
 
   constructor(
     private registrationInfoService: RegistrationInfoService,
-    private router: Router
+    private router: Router,
+    private newsService: NewsService
   ) { }
 
   ngOnInit(): void {
@@ -39,6 +34,10 @@ export class RegistrationInfoComponent implements OnInit {
       this.getBloodType();
       console.log(this.patientRegistrationInfo.bloodType);
     });
+
+    this.newsService.getNewsHeadlines().subscribe((res) => {
+      this.allNews = res;
+    })
   }
 
   getBloodType() {
