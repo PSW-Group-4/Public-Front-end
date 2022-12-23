@@ -68,9 +68,11 @@
             <mat-option
               value="{{ appointment.appointmentSuggestions.startTime }}"
             >
-              {{ appointment.appointmentSuggestions.startTime }} -
-              {{ appointment.appointmentSuggestions.endTime }} /
-              {{ appointment.name }} {{ appointment.surname }}
+              {{
+                appointment.appointmentSuggestions.startTime
+                  | date : "M/d/yy, h:mm a"
+              }}/
+              {{ appointment.name }}
             </mat-option>
           </ng-container>
         </mat-select>
