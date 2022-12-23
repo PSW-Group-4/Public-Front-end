@@ -33,7 +33,7 @@ export class ViewAllTendersComponent implements OnInit {
       this.tenderApplication.priceInRSD = res;
       if(this.tenderApplication.priceInRSD > 0){
         this.tenderApplication.tenderId = tender.id;
-        this.tenderApplication.bloodBankId = "a2b3b878-3568-468e-828f-b653036c96eb";
+        this.tenderApplication.bloodBank = localStorage.getItem('jwt');
         this.tenderApplicationService.apply(this.tenderApplication).subscribe((res: any)=>{
           console.log(res);
           alert("You have applied to the tender successfully");

@@ -17,7 +17,7 @@ export class LoginService {
   ) { }
 
   private redirectToMainPage = () => {
-    var roleLandingPages = new Map<string, string>([['Patient', 'patient']]);
+    var roleLandingPages = new Map<string, string>([['Patient', 'patient'], ['BloodBank', 'bloodBank']]);
 
     const token = localStorage.getItem('jwt');
     const tokenPayload = this.jwtHelper.decodeToken(token!);
@@ -28,6 +28,21 @@ export class LoginService {
 
     this.router.navigate([roleLandingPages.get(role)]);
   };
+
+  public bloodBankLogin = (loginCredentials: LoginDto): void => {
+    this.http.post<Jwt>('http://localhost:5000/api/BloodBank/login', loginCredentials, {
+      headers: ConstSettings.standardHeader,
+    })
+      .subscribe({
+        next: (response) => {
+          localStorage.setItem('jwt', response.jwt);
+          this.redirectToMainPage();
+        },
+        error: err => {
+          alert(err.message);
+        }
+      });
+  }
 
   public login = (loginCredentials: LoginDto): void => {
     this.http

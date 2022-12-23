@@ -2,6 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BloodBank } from '../blood-bank.model';
+import {LoginDto} from "../../auth/Model/loginDto";
+import {Jwt} from "../../auth/Model/Jwt.model";
+import {ConstSettings} from "../../constSettings";
 
 @Injectable({
   providedIn: 'root'
@@ -23,4 +26,6 @@ export class BloodBankService {
   updateBloodBank(bloodBank: any): Observable<any> {
     return this.http.post<any>(this.apiHost + 'api/BloodBank/' + bloodBank.Id, bloodBank, {headers: this.headers});
   }
+
+
 }
