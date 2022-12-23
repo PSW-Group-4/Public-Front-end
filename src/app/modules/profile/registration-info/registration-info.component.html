@@ -104,7 +104,7 @@
       *ngFor="let element of allNews; index as i"
       class="newsCard"
       [ngStyle]="{
-        webkitAnimationDelay: -allNews.length / 3 - 3 * i + 's',
+        webkitAnimationDelay: -3 * i + 's',
         webkitAnimationDuration: allNews.length * 3 + 's',
         background:
           'linear-gradient(-' +
