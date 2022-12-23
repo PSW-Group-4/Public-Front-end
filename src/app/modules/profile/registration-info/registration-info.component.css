@@ -44,3 +44,63 @@
 mat-grid-tile {
   background-color: rgb(33, 38, 40);
 }
+
+/* jOVAN DODAO*/
+.conteudo {
+  position: absolute;
+  cursor: pointer;
+  margin: auto 45%;
+  margin-bottom: 30px;
+  height: fit-content;
+  width: fit-content;
+  box-shadow: 0px 0px 30px white;
+}
+
+.carousel {
+  top: 50px;
+  position: relative;
+  margin-bottom: 30px;
+  height: fit-content;
+  width: fit-content;
+  box-shadow: 0px 0px 30px white;
+}
+
+@keyframes animationCarousel {
+  from {
+    -webkit-transform: rotateY(360deg) translateZ(250px) rotateY(-360deg);
+    z-index: 1000;
+    opacity: 1;
+  }
+
+  50% {
+    z-index: -1000;
+    opacity: 0.001;
+  }
+
+  to {
+    -webkit-transform: rotateY(0deg) translateZ(250px) rotateY(0deg);
+    z-index: 1000;
+    opacity: 1;
+  }
+}
+
+.newsCard {
+  width: 150px;
+  height: 100px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 18px;
+  box-shadow: 0px 0px 30px black;
+  text-align: center;
+  margin-bottom: 30px;
+  -webkit-animation-name: animationCarousel;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+
+.newsCard:hover {
+  box-shadow: 0px 0px 30px white;
+  border: 2px solid white;
+}

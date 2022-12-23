@@ -3,6 +3,12 @@ import { RegistrationInfoService } from './../services/registration-info.service
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
+export interface NewsHeadlines {
+
+  headline: string;
+
+}
+
 @Component({
   selector: 'app-registration-info',
   templateUrl: './registration-info.component.html',
@@ -10,6 +16,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationInfoComponent implements OnInit {
   patientRegistrationInfo: any;
+
+  public allNews: NewsHeadlines[] = [
+    { headline: "Vest 1" },
+    { headline: "Vest 2" },
+    { headline: "Vest 3" },
+    { headline: "Vest 4" },
+    { headline: "Vest 5" },
+    { headline: "Vest 7" },
+    { headline: "Vest 8" },
+  ]
 
   constructor(
     private registrationInfoService: RegistrationInfoService,
@@ -51,5 +67,9 @@ export class RegistrationInfoComponent implements OnInit {
 
 
     }
+  }
+
+  goToNews() {
+    this.router.navigate(["patient/news"])
   }
 }

@@ -98,3 +98,27 @@
     >
   </mat-grid-list>
 </div>
+<div (click)="goToNews()" class="conteudo">
+  <div class="carousel">
+    <div
+      *ngFor="let element of allNews; index as i"
+      class="newsCard"
+      [ngStyle]="{
+        webkitAnimationDelay: -4 * i + 's',
+        webkitAnimationDuration: 4 * allNews.length + 's',
+        background:
+          'linear-gradient(-' +
+          i +
+          '110deg, cyan, rgb(' +
+          +(255 - (i % 255)) +
+          ', ' +
+          (255 - (i % 255)) +
+          ',' +
+          (255 - (i % 255)) +
+          ' ))'
+      }"
+    >
+      {{ element.headline }}
+    </div>
+  </div>
+</div>
