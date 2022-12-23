@@ -65,6 +65,10 @@ mat-grid-tile {
   box-shadow: 0px 0px 30px white;
 }
 
+.carousel:hover .newsCard {
+  animation-play-state: paused;
+}
+
 @keyframes animationCarousel {
   from {
     -webkit-transform: rotateY(-360deg) translateZ(400px) rotateY(360deg);
@@ -94,13 +98,14 @@ mat-grid-tile {
   border-radius: 18px;
   text-align: center;
   margin-bottom: 30px;
+  border: 1px double white;
   -webkit-animation-name: animationCarousel;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;
 }
 
 .newsCard:hover {
-  box-shadow: 0px 0px 30px white;
+  box-shadow: 0px 0px 10px white;
   border: 2px solid white;
   -webkit-animation-name: animationCarousel;
 }
