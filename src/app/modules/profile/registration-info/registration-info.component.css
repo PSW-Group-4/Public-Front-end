@@ -92,7 +92,6 @@ mat-grid-tile {
   justify-content: center;
   align-items: center;
   border-radius: 18px;
-  box-shadow: 0px 0px 30px black;
   text-align: center;
   margin-bottom: 30px;
   -webkit-animation-name: animationCarousel;
