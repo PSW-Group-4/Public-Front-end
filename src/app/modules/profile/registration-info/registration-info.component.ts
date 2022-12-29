@@ -6,7 +6,7 @@ import { NewsService } from 'src/app/Services/news.service';
 
 export interface NewsHeadlines {
 
-  headline: string;
+  title: string;
 
 }
 
