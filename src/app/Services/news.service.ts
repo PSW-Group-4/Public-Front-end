@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { News } from '../model/news.model';
-import { NewsHeadlines } from '../modules/profile/registration-info/registration-info.component';
+import { NewsHeadlines } from '../modules/profile/registration-info/carousel/carousel.component';
 
 @Injectable({
   providedIn: 'root'

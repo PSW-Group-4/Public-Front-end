@@ -1,0 +1,18 @@
+<div (click)="goToNews()" class="conteudo">
+  <div class="carousel">
+    <div
+      *ngFor="let element of allNews; index as i"
+      class="newsCard"
+      [ngStyle]="{
+        webkitAnimationDelay: -3 * i + 's',
+        webkitAnimationDuration: allNews.length * 3 + 's',
+        background:
+          'linear-gradient(-' +
+          i * 30 +
+          'deg, rgba(96,216,255,1) 40%, rgba(255,255,255,1) 100% )'
+      }"
+    >
+      {{ element.title }}
+    </div>
+  </div>
+</div>

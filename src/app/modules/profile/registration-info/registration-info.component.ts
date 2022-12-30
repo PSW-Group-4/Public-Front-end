@@ -4,11 +4,6 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from 'src/app/Services/news.service';
 
-export interface NewsHeadlines {
-
-  title: string;
-
-}
 
 @Component({
   selector: 'app-registration-info',
@@ -18,13 +13,10 @@ export interface NewsHeadlines {
 export class RegistrationInfoComponent implements OnInit {
   patientRegistrationInfo: any;
 
-  public allNews: NewsHeadlines[] = []
 
 
   constructor(
     private registrationInfoService: RegistrationInfoService,
-    private router: Router,
-    private newsService: NewsService
   ) { }
 
   ngOnInit(): void {
@@ -35,9 +27,7 @@ export class RegistrationInfoComponent implements OnInit {
       console.log(this.patientRegistrationInfo.bloodType);
     });
 
-    this.newsService.getNewsHeadlines().subscribe((res) => {
-      this.allNews = res;
-    })
+
   }
 
   getBloodType() {
@@ -68,7 +58,5 @@ export class RegistrationInfoComponent implements OnInit {
     }
   }
 
-  goToNews() {
-    this.router.navigate(["patient/news"])
-  }
+
 }
