@@ -8,6 +8,15 @@ import {IncomingDateValidator} from '../utilities/incoming-date.validator'
 import { AppointmentService } from '../http-services/appointment.service';
 import { ScheduleAppointmentRequest } from '../Model/ScheduleAppointmentRequest';
 import { AvailableTimesRequest } from '../Model/AvailableTimesRequest';
+import { MedAppEventSourcingService } from '../http-services/med-app-event-sourcing.service';
+import { ChooseDate } from '../Model/event-sourcing/ChooseDate';
+import { StartScheduling } from '../Model/event-sourcing/StartScheduling';
+import { ChooseSpeciality } from '../Model/event-sourcing/ChooseSpeciality';
+import { ChooseDoctor } from '../Model/event-sourcing/ChooseDoctor';
+import { FinishScheduling } from '../Model/event-sourcing/FinishScheduling';
+import { stringToKeyValue } from '@angular/flex-layout/extended/style/style-transforms';
+import { GoBackToSelection } from '../Model/event-sourcing/GoBackToSelection';
+import { Selection } from '../Model/event-sourcing/GoBackToSelection';
 
 @Component({
   selector: 'app-simple-appointment-scheduling',
@@ -16,6 +25,9 @@ import { AvailableTimesRequest } from '../Model/AvailableTimesRequest';
 })
 export class SimpleAppointmentSchedulingComponent implements OnInit {
 
+  //Javascript things... (Component can only access types defined in its own .ts file)
+  public Selection = Selection
+
   dateForm: FormGroup = new FormGroup({
     date: new FormControl<Date | null>(null, [Validators.required, IncomingDateValidator])
   })
@@ -23,6 +35,9 @@ export class SimpleAppointmentSchedulingComponent implements OnInit {
   specialties: string[] = [];
   doctors: PersonFullname[] =  [];
   availableTimes: DateRangeCustom[] = [];
+
+  //Used for event sourcing
+  sessionId: string = "";
 
   //Needed because materials list is used
   selectedSpecialtyIndex: number = -1;
@@ -34,6 +49,7 @@ export class SimpleAppointmentSchedulingComponent implements OnInit {
 
   constructor(private readonly doctorService : DoctorService,
               private readonly appointmentService : AppointmentService,
+              private readonly eventSourcingService : MedAppEventSourcingService,
                private readonly router : Router) { }
 
   get doctorNames()
@@ -86,9 +102,34 @@ export class SimpleAppointmentSchedulingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.StartSchedulingSession();
     this.getSpecialties();
   }
-  getSpecialties = () =>
+
+
+  StartSchedulingSession = (): void => {
+      let dto : StartScheduling = {
+        OccurenceTime : new Date()
+      } 
+
+      this.eventSourcingService.startSchedulingSession(dto).subscribe((response : string) =>{
+        this.sessionId = response;
+      });
+  }
+
+
+  ChooseDate = ():void =>
+  {
+    let dto : ChooseDate = {
+      AggregateId : this.sessionId,
+      Date : this.selectedDate,
+      OccurenceTime : new Date()
+
+    }
+    this.eventSourcingService.chooseDate(dto).subscribe();
+  }
+
+  getSpecialties = ():void =>
   {
       this.doctorService.getSpecialties().subscribe(
         (response: string[]) => {
@@ -106,9 +147,12 @@ export class SimpleAppointmentSchedulingComponent implements OnInit {
   {
       if(this.selectedSpecialtyIndex == -1) return;
 
-      let specialty = this.specialties[this.selectedSpecialtyIndex];
-      if(!specialty) return;
-      this.doctorService.getDoctorsWithSpecialty(specialty).subscribe(
+      let speciality = this.specialties[this.selectedSpecialtyIndex];
+      if(!speciality) return;
+
+      this.recordChoosingSpeciality(speciality);
+
+      this.doctorService.getDoctorsWithSpecialty(speciality).subscribe(
         (response: PersonFullname[]) => {
           this.doctors = response;
         }
@@ -122,8 +166,12 @@ export class SimpleAppointmentSchedulingComponent implements OnInit {
 
   GetAvailableTimes = () =>
   {
+    let doctorsId :string =  this.doctors[this.selectedDoctorIndex].id;
+
+    this.recordChoosingDoctor(doctorsId);
+
     this.appointmentService.getAvailableTimes({
-        doctorId: this.doctors[this.selectedDoctorIndex].id,
+        doctorId: doctorsId  ,
         date: this.selectedDate
     }).subscribe( (response: DateRangeCustom[]) =>{
       this.availableTimes = response;
@@ -141,13 +189,60 @@ export class SimpleAppointmentSchedulingComponent implements OnInit {
 
   scheduleAppointment  = () =>
   {
+    let doctorsId : string = this.doctors[this.selectedDoctorIndex].id;
+    let chosenTime : Date = this.availableTimes[this.selectedTimeIndex].startTime;
+
+    this.recordScheduleFinishing(chosenTime);
+
     let dto : AvailableTimesRequest = {
-      doctorId: this.doctors[this.selectedDoctorIndex].id,
-      date: this.availableTimes[this.selectedTimeIndex].startTime
+      doctorId: doctorsId ,
+      date: chosenTime
     }
 
     this.appointmentService.schedule(dto).subscribe(_ => {
         this.appointmentScheduled = true; 
     });
   }
+
+  private recordScheduleFinishing(chosenTime: Date) {
+    let Dto: FinishScheduling = {
+      AggregateId: this.sessionId,
+      OccurenceTime: new Date(),
+      Time: chosenTime
+    };
+
+    this.eventSourcingService.finishScheduling(Dto).subscribe();
+  }
+
+  private recordChoosingDoctor(doctorsId: string) {
+    let dto: ChooseDoctor = {
+      AggregateId: this.sessionId,
+      DoctorId: doctorsId,
+      OccurenceTime: new Date()
+    };
+
+    this.eventSourcingService.chooseDoctor(dto).subscribe();
+  }
+
+  private recordChoosingSpeciality(speciality: string) {
+    let dto: ChooseSpeciality = {
+      AggregateId: this.sessionId,
+      OccurenceTime: new Date(),
+      Speciality: speciality
+    };
+
+    this.eventSourcingService.chooseSpeciality(dto).subscribe();
+  }
+
+  recordGoingBackToSelection(selection : Selection)
+  {
+    let dto : GoBackToSelection = {
+      AggregateId : this.sessionId,
+      OccurenceTime : new Date(),
+      Selection : selection
+    }
+
+    this.eventSourcingService.goBackToSelection(dto).subscribe();
+  }
+
 }
