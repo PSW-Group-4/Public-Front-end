@@ -1,0 +1,4 @@
+::ng-deep .mat-select-panel {
+  width: auto;
+  max-width: 100%;
+}
