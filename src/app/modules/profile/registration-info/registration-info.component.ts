@@ -2,6 +2,8 @@ import { PatientDto } from './../model/patientDto.model';
 import { RegistrationInfoService } from './../services/registration-info.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { NewsService } from 'src/app/Services/news.service';
+
 
 @Component({
   selector: 'app-registration-info',
@@ -11,9 +13,10 @@ import { Component, OnInit } from '@angular/core';
 export class RegistrationInfoComponent implements OnInit {
   patientRegistrationInfo: any;
 
+
+
   constructor(
     private registrationInfoService: RegistrationInfoService,
-    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -23,6 +26,8 @@ export class RegistrationInfoComponent implements OnInit {
       this.getBloodType();
       console.log(this.patientRegistrationInfo.bloodType);
     });
+
+
   }
 
   getBloodType() {
@@ -52,4 +57,6 @@ export class RegistrationInfoComponent implements OnInit {
 
     }
   }
+
+
 }
