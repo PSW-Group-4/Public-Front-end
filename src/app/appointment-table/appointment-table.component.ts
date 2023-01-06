@@ -1,3 +1,4 @@
+import { ReportService } from './../Services/report.service';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Appointment } from '../model/Appointment';
@@ -7,52 +8,83 @@ import { MaterialModule } from '../material/material.module';
 @Component({
   selector: 'app-appointment-table',
   templateUrl: './appointment-table.component.html',
-  styleUrls: ['./appointment-table.component.css']
+  styleUrls: ['./appointment-table.component.css'],
 })
 export class AppointmentTableComponent implements OnInit {
-
   appointments: Appointment[] = [];
   dataSource: Appointment[] = [];
-  displayedColumns = ['time', 'doctor', 'room', 'delete'];
+  displayedColumns = ['time', 'doctor', 'room', 'delete', 'generatePdf'];
   isFuture: boolean = true;
+  reportId: String = '-1';
 
-  constructor(private appointmentService: AppointmentService) { }
+  constructor(
+    private appointmentService: AppointmentService,
+    private reportService: ReportService
+  ) {}
 
   ngOnInit(): void {
-    this.appointmentService.getsAppointments('get-all-future').subscribe((res) => {
-      this.appointments = res;
-      this.dataSource = this.appointments
-    });
-    
+    this.appointmentService
+      .getsAppointments('get-all-future')
+      .subscribe((res) => {
+        this.appointments = res;
+        this.dataSource = this.appointments;
+      });
   }
 
   changeAppType(type: string): void {
-    if(type === 'get-all-future') {
+    if (type === 'get-all-future') {
       this.isFuture = true;
-    }
-    else {
+    } else {
       this.isFuture = false;
     }
     this.appointmentService.getsAppointments(type).subscribe((res) => {
       this.appointments = res;
-      this.dataSource = this.appointments
-    });
-  } 
-
-  btnClick(id: string): void {
-    this.appointmentService.cancelAppointment(id).subscribe((res) => {
-      if(res === id) {
-        this.appointmentService.getsAppointments('get-all-future').subscribe((res) => {
-          this.appointments = res;
-          this.dataSource = this.appointments
-        });
-      }
-      else {
-        alert("Nije moguce otazati ovaj pregled");
-      }
-    },(error) => {
-      alert(error.error);
+      this.dataSource = this.appointments;
     });
   }
 
+  btnClick(id: string): void {
+    this.appointmentService.cancelAppointment(id).subscribe(
+      (res) => {
+        if (res === id) {
+          this.appointmentService
+            .getsAppointments('get-all-future')
+            .subscribe((res) => {
+              this.appointments = res;
+              this.dataSource = this.appointments;
+            });
+        } else {
+          alert('Nije moguce otazati ovaj pregled');
+        }
+      },
+      (error) => {
+        alert(error.error);
+      }
+    );
+  }
+
+  generatePdf(medAppId: string): void {
+    console.log('Generate PDF');
+    let settings = ['pacijent', 'simptomi', 'dijagnoza', 'lek'];
+
+    this.reportService
+      .getReportByMedicalAppointmentId(medAppId)
+      .subscribe((res) => {
+        this.reportId = res;
+        console.log(res);
+        console.log(this.reportId);
+
+        this.appointmentService
+          .generatePdf(this.reportId, settings)
+          .subscribe((res) => {
+            console.log(res);
+            let fileName = 'appointmentReport';
+            let blob: Blob = res.body as Blob;
+            let a = document.createElement('a');
+            a.download = fileName;
+            a.href = window.URL.createObjectURL(blob);
+            window.open(a.href);
+          });
+      });
+  }
 }
