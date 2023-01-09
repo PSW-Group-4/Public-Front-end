@@ -1,4 +1,4 @@
-ul {
+/*ul {
   text-transform: uppercase;
   list-style-type: none;
   margin: 0;
@@ -27,4 +27,52 @@ li a:hover {
   background-color: green;
   text-shadow: 0px 0px 3012px lightgreen;
   box-shadow: 0px 0px 30px lightgreen;
+}*/
+
+.navbar-container {
+  background-color: #F3C622;
+  height: 60px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.navbar-item {
+  color: #3A3637;
+  text-decoration: none;
+  font-size: 1.5em;
+
+}
+
+.app-content {
+  display: none;
+  position: absolute;
+  background-color: #FCD615;
+  /*min-width: 160px;*/
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 10px;
+  z-index: 1;
+}
+
+/* Show the dropdown menu on hover */
+.app-dropdown:hover .app-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  row-gap: 10px;
+}
+
+.navbar-item:hover {
+  font-weight: bolder;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#right {
+  position: absolute;
+  right: 15px;
 }
