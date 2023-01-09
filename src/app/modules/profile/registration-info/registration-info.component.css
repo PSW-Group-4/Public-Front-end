@@ -1,4 +1,4 @@
-.grid {
+/* .grid {
   width: 80%;
   margin: auto;
 }
@@ -43,77 +43,77 @@
 
 mat-grid-tile {
   background-color: rgb(33, 38, 40);
+} */
+
+.container {
+  height: 80%;
+  width: 75%;
+  margin: 2% auto;
+
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
 }
 
-/* jOVAN DODAO*/
-.conteudo {
-  position: absolute;
-  cursor: pointer;
-  margin: 0 45%;
-  font-weight: bold;
-}
+.pic {
+  background-color: #3A3637;
+  border: 3px solid #FCD615;
 
-.carousel {
-  position: relative;
-  top: 25px;
-  height: 125px;
-  color: darkslategrey;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-.carousel:hover .newsCard {
-  animation-play-state: paused;
-}
-.carousel:hover > :not(:hover) {
-  font-size: small;
-  box-shadow: 0px 0px 25px darkslategrey;
-  border: 2px solid darkslategrey;
-  filter: brightness(85%);
-}
-
-.newsCard:hover {
-  box-shadow: 0px 0px 25px white;
-  border: 3px solid white;
-  font-size: 3em;
-  width: 200px;
-  color: darkcyan;
-  background: linear-gradient(
-    -45deg,
-    rgb(96, 231, 255) 50%,
-    rgb(255, 255, 255) 100%
-  ) !important;
-}
-
-@keyframes animationCarousel {
-  from {
-    -webkit-transform: rotateY(-360deg) translateZ(400px) rotateY(360deg);
-    z-index: 1000;
-    opacity: 2;
-  }
-
-  50% {
-    z-index: -1000;
-    opacity: 0.015;
-  }
-
-  to {
-    -webkit-transform: rotateY(0deg) translateZ(400px) rotateY(0deg);
-    z-index: 1000;
-    opacity: 2;
-  }
-}
-
-.newsCard {
-  width: 150px;
-  height: 100px;
-  position: absolute;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  border-radius: 25px;
-  text-align: center;
-  border: 2px double white;
-  -webkit-animation-name: animationCarousel;
-  -webkit-animation-iteration-count: infinite;
-  -webkit-animation-timing-function: linear;
+  row-gap: 3%;
+}
+
+.info {
+  background-color: #3A3637;
+  border: 3px solid #FCD615;
+
+  display: grid;
+  grid-template-rows: 1fr 5px 1fr 5px 1fr 5px 1fr 5px 2fr;
+  grid-template-columns: 1fr 2fr;
+  justify-items: start;
+  align-items: center;
+}
+
+.logo {
+  width: 33%;
+  margin-top: 10%;
+}
+
+.name {
+  font-size: 26px;
+  color: #C2FF50;
+}
+
+.info-line {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  border-top: 1px solid #FCD615;
+  width: 100%;
+  align-self: center;
+  justify-self: center;
+  width: 95%;
+  
+}
+
+.info-lab {
+  margin-left: 6%;
+  font-size: 20px;
+  color: #FCB43A;
+  font-style: italic;
+}
+
+.info-text {
+  margin-left: 1px;
+  font-size: 20px;
+  color: #C2FF50;
+}
+
+.all-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
