@@ -1,4 +1,4 @@
-button {
+/* button {
   width: fit-content;
 }
 
@@ -18,4 +18,67 @@ textarea {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   box-sizing: border-box;
   outline: none;
+} */
+
+.container {
+  height: 80%;
+  width: 75%;
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+  margin: 2% auto;
+  gap: 10px;
+}
+
+.options {
+  background-color: var(--text-b);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 10px;
+  padding-left: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.textcont {
+  background-color: var(--text-b);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px;
+  padding-left: 20px;
+}
+
+.text {
+  font-size: 22px;
+  color: var(--text);
+}
+
+.text2 {
+  font-size: 20px;
+  color: var(--mat);
+}
+
+.cekb {
+  height: 100%;
+  margin-left: 7px;
+}
+
+#feedbackText {
+  background-color: var(--back);
+  font-size: 18px;
+  color: var(--mat);
+  resize: none;
+}
+
+#sendFeedback {
+  width: 20%;
+}
+
+input[type="checkbox"]:checked {
+  accent-color: var(--text-important);
 }

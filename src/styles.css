@@ -3,7 +3,7 @@
   --text-important: #16c2d5;
   --back: #2e4450;
   --backs: #527c88;
-  --mat: white;
+  --mat: rgb(227, 226, 212);
   --text-b: #192830;
 }
 
@@ -21,6 +21,12 @@ button {
   text-transform: uppercase;
   letter-spacing: 0.2px;
   outline: 0;
+  background-color: var(--text-important) !important;
+  color: var(--text-b) !important;
+}
+
+button:hover {
+  background-color: var(--mat) !important;
 }
 
 html,

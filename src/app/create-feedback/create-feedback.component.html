@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
   <p></p>
   <p>Enter your feedback</p>
   <textarea
@@ -28,4 +28,41 @@
   <button id="sendFeedback" (click)="sendFeedback()" mat-raised-button>Submit</button>
   <p></p>
   <p id="errorMessage">{{ EnterAllFieldsCorrectlyMessage }}</p>
+</div> -->
+
+<div class="container">
+  <div class="options">
+    <div class="text">How should your feedback be processed?</div>
+    <div>
+      <input
+        class="cekb"
+        type="checkbox"
+        id="public"
+        [(ngModel)]="feedbackRequestDto.isDesiredPublic"
+      />
+      <label for="public" class="text2">I want my feedback to appear publicly</label>
+    </div>
+
+    <div>
+      <input
+        class="cekb"
+        type="checkbox"
+        id="anonymous"
+        [(ngModel)]="feedbackRequestDto.isAnonimous"
+      />
+      <label for="anonymous" class="text2">I want to stay anonymous (hidden name)</label>
+    </div>
+  </div>
+  <div class="textcont">
+    <div class="text">Enter your feedback below</div>
+
+    <textarea
+      id="feedbackText"
+      cols="70"
+      rows="15"
+      [(ngModel)]="feedbackRequestDto.text">
+    </textarea>
+
+    <button id="sendFeedback" (click)="sendFeedback()" mat-raised-button>Submit</button>
+  </div>
 </div>
