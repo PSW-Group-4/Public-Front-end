@@ -64,14 +64,13 @@ li a:hover {
 .app-dropdown:hover .app-content {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: stretch;
   align-items: flex-start;
   row-gap: 10px;
 }
 
 .navbar-item:hover {
-  font-weight: bolder;
-  text-decoration: underline;
+  text-shadow: 0 0 10px var(--text-b);
   cursor: pointer;
 }
 

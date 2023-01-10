@@ -3,3 +3,18 @@
 ::ng-deep .mat-horizontal-stepper-header{
     pointer-events: none !important;
 }
+
+::ng-deep .mat-horizontal-stepper-wrapper {
+    background-color: var(--text-b);
+}
+
+.backg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    margin: auto;
+    gap: 10px;
+    background-color: aqua;
+    width: 80%;
+}

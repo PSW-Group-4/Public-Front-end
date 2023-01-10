@@ -1,17 +1,14 @@
 button {
   width: fit-content;
 }
+
+button:hover {
+  background-color: black;
+}
 p,
 label {
   color: lightcyan;
 }
-button {
-  background: lightgreen;
-}
-button:hover {
-  background-color: greenyellow;
-}
-
 input[type="checkbox"]:checked {
   accent-color: yellowgreen;
 }
