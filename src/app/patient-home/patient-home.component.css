@@ -30,7 +30,7 @@ li a:hover {
 }*/
 
 .navbar-container {
-  background-color: #F3C622;
+  background-color: var(--text-important);
   height: 60px;
 
   display: flex;
@@ -39,10 +39,11 @@ li a:hover {
   align-items: center;
   column-gap: 20px;
   flex-wrap: wrap;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .navbar-item {
-  color: #3A3637;
+  color: var(--text-b);
   text-decoration: none;
   font-size: 1.5em;
 
@@ -51,12 +52,12 @@ li a:hover {
 .app-content {
   display: none;
   position: absolute;
-  background-color: #FCD615;
+  background-color: var(--text);
   /*min-width: 160px;*/
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding: 10px;
   z-index: 1;
-  border: 2px solid #3A3637;
+  border: 2px solid var(--text-b);
 }
 
 /* Show the dropdown menu on hover */

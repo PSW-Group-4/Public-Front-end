@@ -1,5 +1,14 @@
+:root {
+  --text: #89dee2;
+  --text-important: #16c2d5;
+  --back: #2e4450;
+  --backs: #527c88;
+  --mat: white;
+  --text-b: #192830;
+}
+
 body {
-  background: #23212C;
+  background: var(--back);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
 }

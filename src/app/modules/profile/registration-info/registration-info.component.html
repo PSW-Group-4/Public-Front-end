@@ -103,6 +103,7 @@
   <div class="pic">
     <img class="logo" src="assets/profile.png" alt="LOGO"/>
     <div class="name">{{ patientRegistrationInfo.name }} {{ patientRegistrationInfo.surname }}</div>
+    <div class="info-line"></div>
   </div>
   <div class="info">
     <div class="info-lab">E-mail</div>
@@ -134,7 +135,6 @@
       <div class="info-text" *ngFor="let item of patientRegistrationInfo.allergies">{{ item.name }}</div>
       <div class="info-text" *ngIf="patientRegistrationInfo.allergies?.length == 0">None</div>
     </div>
-    <div class="info-line"></div>
   </div>
 </div>
 
