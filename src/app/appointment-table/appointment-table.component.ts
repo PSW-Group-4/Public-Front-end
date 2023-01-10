@@ -15,14 +15,19 @@ export class AppointmentTableComponent implements OnInit {
   dataSource: Appointment[] = [];
   displayedColumns = ['time', 'doctor', 'room', 'delete', 'generatePdf'];
   isFuture: boolean = true;
+  isCanc: boolean = false;
+  isDone: boolean = false;
   reportId: String = '-1';
 
   constructor(
     private appointmentService: AppointmentService,
     private reportService: ReportService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
+    
+
     this.appointmentService
       .getsAppointments('get-all-future')
       .subscribe((res) => {
@@ -34,9 +39,19 @@ export class AppointmentTableComponent implements OnInit {
   changeAppType(type: string): void {
     if (type === 'get-all-future') {
       this.isFuture = true;
-    } else {
+      this.isCanc = false;
+      this.isDone = false;
+    } else if (type === 'get-all-done') {
       this.isFuture = false;
+      this.isCanc = false;
+      this.isDone = true;
     }
+    else {
+      this.isFuture = false;
+      this.isCanc = true;
+      this.isDone = false;
+    }
+
     this.appointmentService.getsAppointments(type).subscribe((res) => {
       this.appointments = res;
       this.dataSource = this.appointments;
