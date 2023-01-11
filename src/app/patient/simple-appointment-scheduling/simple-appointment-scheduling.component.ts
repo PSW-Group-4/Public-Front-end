@@ -68,9 +68,10 @@ export class SimpleAppointmentSchedulingComponent implements OnInit {
   {
       let availableTimesString: string[] = [];
       this.availableTimes.forEach((time : DateRangeCustom) => {
-        let timeStringStart = time.startTime.getFullYear() + "." +
-          time.startTime.getMonth() + "." + 
-          time.startTime.getDate() + " " + 
+        let timeStringStart = 
+          // time.startTime.getFullYear() + "." +
+          // time.startTime.getMonth() + "." + 
+          // time.startTime.getDate() + " " + 
           time.startTime.getHours() + ":";
           if(time.startTime.getMinutes() < 10)
           {
@@ -82,9 +83,10 @@ export class SimpleAppointmentSchedulingComponent implements OnInit {
           }
            
 
-        let timeStringEnd = time.endTime.getFullYear() + "." +
-          time.endTime.getMonth() + "." + 
-          time.endTime.getDate() + " " + 
+        let timeStringEnd = 
+          // time.endTime.getFullYear() + "." +
+          // time.endTime.getMonth() + "." + 
+          // time.endTime.getDate() + " " + 
           time.endTime.getHours() + ":";
           if(time.endTime.getMinutes() < 10)
           {

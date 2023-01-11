@@ -121,3 +121,7 @@ td, th {
   align-self: flex-start;
   margin-left: 2%;
 }
+
+.row-btn {
+  width: 70%;
+}

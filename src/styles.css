@@ -37,3 +37,18 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.mat-horizontal-content-container{
+  height: 100%;
+}
+.mat-horizontal-stepper-content{
+  height: 100%;
+}
+
+.mat-input-element[type=date], .mat-input-element[type=datetime], .mat-input-element[type=datetime-local], .mat-input-element[type=month], .mat-input-element[type=week], .mat-input-element[type=time] {
+  color: var(--text);
+}
+
+* {
+  transition: 0.3s;
+}
