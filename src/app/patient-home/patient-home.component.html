@@ -1,4 +1,4 @@
-<ul>
+<!-- <ul>
   <li><a routerLink="info">Profile</a></li>
   <li><a routerLink="createFeedback">Create Feedback</a></li>
   <li><a routerLink="/landingPage">Medical Appointments</a></li>
@@ -13,5 +13,21 @@
     >
   </li>
   <li (click)="logout()" style="float: right"><a>Log out</a></li>
-</ul>
+</ul> -->
+
+<div class="navbar-container">
+  <div class="app-dropdown">
+    <div class="navbar-item" href="#">Appointmens ▾</div>
+    <div class="app-content">
+      <a class="navbar-item" routerLink="view-appointments">View appointmens</a>
+      <a class="navbar-item" routerLink="schedule-simple-appointment">Schedule appointment - simple</a>
+      <a class="navbar-item" routerLink="schedule-appointment-with-suggestions">Schedule appointment - with suggestions</a>
+    </div>
+  </div>
+  <a class="navbar-item" routerLink="createFeedback">Create Feedback</a>
+  <a class="navbar-item" routerLink="news">News</a>
+  <a class="navbar-item" routerLink="info">Profile</a>
+  <div class="navbar-item" id="right" (click)="logout()"><a>Log out</a></div>
+</div>
+
 <router-outlet></router-outlet>

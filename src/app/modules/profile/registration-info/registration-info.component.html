@@ -1,4 +1,4 @@
-<div class="grid">
+<!-- <div class="grid">
   <div class="header">Profile</div>
   <mat-grid-list cols="2" rowHeight="2:1">
     <mat-grid-tile
@@ -97,5 +97,45 @@
       ></mat-grid-tile
     >
   </mat-grid-list>
+</div> -->
+
+<div class="container">
+  <div class="pic">
+    <img class="logo" src="assets/profile.png" alt="LOGO"/>
+    <div class="name">{{ patientRegistrationInfo.name }} {{ patientRegistrationInfo.surname }}</div>
+    <div class="info-line"></div>
+  </div>
+  <div class="info">
+    <div class="info-lab">E-mail</div>
+    <div class="info-text">{{ patientRegistrationInfo.email }}</div>
+    <div class="info-line"></div>
+    
+    <div class="info-lab">Address</div>
+    <div class="info-text">
+      {{ patientRegistrationInfo.address.street }} 
+      {{ patientRegistrationInfo.address.streetNumber }}, 
+      {{ patientRegistrationInfo.address.city }}, 
+      {{ patientRegistrationInfo.address.country }}
+    </div>
+    <div class="info-line"></div>
+
+    <div class="info-lab">Chosen doctor</div>
+    <div class="info-text">
+      {{patientRegistrationInfo.chosenDoctor.name}} {{patientRegistrationInfo.chosenDoctor.surname}}
+    </div>
+    <div class="info-line"></div>
+
+    <div class="info-lab">Blood type</div>
+    <div class="info-text">{{patientRegistrationInfo.bloodTypeShow}}</div>
+    <div class="info-line"></div>
+
+
+    <div class="info-lab">Allergies</div>
+    <div class="all-list">
+      <div class="info-text" *ngFor="let item of patientRegistrationInfo.allergies">{{ item.name }}</div>
+      <div class="info-text" *ngIf="patientRegistrationInfo.allergies?.length == 0">None</div>
+    </div>
+  </div>
 </div>
+
 <app-carousel></app-carousel>

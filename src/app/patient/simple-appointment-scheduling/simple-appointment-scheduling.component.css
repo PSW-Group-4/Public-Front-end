@@ -3,3 +3,116 @@
 ::ng-deep .mat-horizontal-stepper-header{
     pointer-events: none !important;
 }
+
+::ng-deep .mat-horizontal-stepper-wrapper {
+    background-color: var(--text-b);
+    height: 100%;
+}
+
+.backg {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+    margin: 2% auto;
+    gap: 10px;
+    background-color: var(--back);
+    width: 80%;
+    height: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.stepcont {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 6fr 1fr;
+    align-items: start;
+    justify-items: center;
+    gap: 10px;
+}
+
+.stepper {
+    height: 100%;
+}
+
+.btns {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-evenly;
+    align-items: center;
+
+    align-self: center;
+}
+
+.infos {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    overflow-y: auto;
+}
+
+.prog-btn {
+    width: 10%;
+}
+
+.text {
+    font-size: 20px;
+    color: var(--text);
+}
+
+::ng-deep .mat-step-text-label {
+    color: var(--text);
+}
+
+::ng-deep .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+    background-color: var(--text-important);
+    color: var(--text-b);
+}
+
+::ng-deep .mat-step-header .mat-step-icon-state-edit{
+    background-color: var(--text-important);
+    color: var(--text-b);
+}
+
+.list-item {
+    text-align: left;
+    background-color: var(--text-important);
+    color: var(--text-b);
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: 3px solid var(--back);
+    transition: 0.3s;
+    margin-right: 12px;
+}
+
+mat-list-option[aria-selected="true"] {
+    border: 3px solid var(--mat);
+    translate: 11px 0;
+  }
+
+.list-item:hover {
+    background-color: var(--mat);
+}
+
+.list {
+    width: 40%;
+    height: 100%;
+    overflow-y:auto;
+    overflow-x: hidden;
+    padding-right: 12px;
+}
+
+.datepicker {
+    height: 70%;
+    width: 30%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: 18px;
+}

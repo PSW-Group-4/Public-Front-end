@@ -1,4 +1,4 @@
-<div class="feedbackSection">
+<!-- <div class="feedbackSection">
   <table>
     <th>Date:</th>
     <th>Patient</th>
@@ -16,4 +16,24 @@
       </tr>
     </tbody>
   </table>
+</div> -->
+
+<div class="container">
+  <div class="card" *ngFor="let feedback of feedbacksPublics">
+
+    <div class="card2">
+      <div class="pic">
+        <img class="logo" src="assets/profile.png" alt="LOGO"/>
+      </div>
+      <div class="name">
+        <div class="na">{{ feedback.patientFullname }}</div>
+        <div class="time">{{ feedback.date | date: "dd/MM/yyyy HH:mm" }}</div>
+      </div>
+      
+      <div class="text">
+        {{ feedback.text }}
+      </div>
+    </div>
+    
+  </div>
 </div>

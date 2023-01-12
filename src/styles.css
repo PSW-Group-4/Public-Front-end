@@ -1,5 +1,14 @@
+:root {
+  --text: #89dee2;
+  --text-important: #16c2d5;
+  --back: #2e4450;
+  --backs: #527c88;
+  --mat: rgb(227, 226, 212);
+  --text-b: #192830;
+}
+
 body {
-  background: #007f5c;
+  background: var(--back);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
 }
@@ -12,6 +21,12 @@ button {
   text-transform: uppercase;
   letter-spacing: 0.2px;
   outline: 0;
+  background-color: var(--text-important) !important;
+  color: var(--text-b) !important;
+}
+
+button:hover {
+  background-color: var(--mat) !important;
 }
 
 html,
@@ -21,4 +36,19 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-horizontal-content-container{
+  height: 100%;
+}
+.mat-horizontal-stepper-content{
+  height: 100%;
+}
+
+.mat-input-element[type=date], .mat-input-element[type=datetime], .mat-input-element[type=datetime-local], .mat-input-element[type=month], .mat-input-element[type=week], .mat-input-element[type=time] {
+  color: var(--text);
+}
+
+* {
+  transition: 0.3s;
 }
