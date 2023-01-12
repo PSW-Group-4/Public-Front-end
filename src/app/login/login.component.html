@@ -1,5 +1,5 @@
 <div class="login-form">
-  <p>Login</p>
+  <div class="text">Login</div>
   <div class="content" [formGroup]="loginForm">
     <div class="input-field">
       <input
@@ -20,7 +20,7 @@
   </div>
 
   <div class="action">
-    <button id="loginBtn" (click)="login()" class="login">Login</button>
-    <button class="register" routerLink="/register">Register</button>
+    <button id="loginBtn" (click)="login()" class="login" mat-raised-button>Login</button>
+    <button class="register" routerLink="/register" mat-raised-button>Register</button>
   </div>
 </div>
