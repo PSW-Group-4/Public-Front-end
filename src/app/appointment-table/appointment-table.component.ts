@@ -22,12 +22,9 @@ export class AppointmentTableComponent implements OnInit {
   constructor(
     private appointmentService: AppointmentService,
     private reportService: ReportService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
-    
-
     this.appointmentService
       .getsAppointments('get-all-future')
       .subscribe((res) => {
@@ -45,8 +42,7 @@ export class AppointmentTableComponent implements OnInit {
       this.isFuture = false;
       this.isCanc = false;
       this.isDone = true;
-    }
-    else {
+    } else {
       this.isFuture = false;
       this.isCanc = true;
       this.isDone = false;
@@ -82,9 +78,8 @@ export class AppointmentTableComponent implements OnInit {
     console.log('Generate PDF');
     let settings = ['pacijent', 'simptomi', 'dijagnoza', 'lek'];
 
-    this.reportService
-      .getReportByMedicalAppointmentId(medAppId)
-      .subscribe((res) => {
+    this.reportService.getReportByMedicalAppointmentId(medAppId).subscribe(
+      (res) => {
         this.reportId = res;
         console.log(res);
         console.log(this.reportId);
@@ -100,6 +95,12 @@ export class AppointmentTableComponent implements OnInit {
             a.href = window.URL.createObjectURL(blob);
             window.open(a.href);
           });
-      });
+      },
+      (err) => {
+        if (err.status == 404) {
+          alert('This appointment has no report assosiated with it');
+        }
+      }
+    );
   }
 }
