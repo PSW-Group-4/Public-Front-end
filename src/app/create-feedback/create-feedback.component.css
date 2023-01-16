@@ -82,3 +82,8 @@ textarea {
 input[type="checkbox"]:checked {
   accent-color: var(--text-important);
 }
+
+.dugme {
+  background-color: rgb(150, 167, 169) !important;
+  pointer-events: none;
+}
