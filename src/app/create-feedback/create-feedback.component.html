@@ -63,6 +63,6 @@
       [(ngModel)]="feedbackRequestDto.text">
     </textarea>
 
-    <button id="sendFeedback" (click)="sendFeedback()" mat-raised-button>Submit</button>
+    <button id="sendFeedback" (click)="sendFeedback()" [class.dugme]="!feedbackRequestDto.text" mat-raised-button>Submit</button>
   </div>
 </div>

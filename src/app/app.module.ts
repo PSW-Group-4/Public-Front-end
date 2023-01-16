@@ -25,6 +25,7 @@ import { TenderWinnerResponseComponent } from './tender-winner-response/tender-w
 import { AppointmentTableComponent } from './appointment-table/appointment-table.component';
 import { ViewAllTendersComponent } from './tenders/view-all-tenders/view-all-tenders.component';
 import { ApplyToTenderComponent } from './tenders/apply-to-tender/apply-to-tender.component';
+import { FeedbackDialogComponent } from './feedback-dialog/feedback-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,9 +40,11 @@ import { ApplyToTenderComponent } from './tenders/apply-to-tender/apply-to-tende
     TenderWinnerResponseComponent,
     AppointmentTableComponent,
     ViewAllTendersComponent,
-    ApplyToTenderComponent
+    ApplyToTenderComponent,
+    FeedbackDialogComponent
     
   ],
+  entryComponents: [FeedbackDialogComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
