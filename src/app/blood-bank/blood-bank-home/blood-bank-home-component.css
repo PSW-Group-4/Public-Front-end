@@ -4,7 +4,7 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: lightgreen;
+  background-color: lightseagreen;
   top: 0;
   z-index: 1;
   border: 2px solid lightcyan;
@@ -24,7 +24,7 @@ li a {
 }
 
 li a:hover {
-  background-color: green;
-  text-shadow: 0px 0px 3012px lightgreen;
-  box-shadow: 0px 0px 30px lightgreen;
+  background-color: rgb(8, 95, 91);
+  text-shadow: 0px 0px 3012px lightseagreen;
+  box-shadow: 0px 0px 30px lightseagreen;
 }
