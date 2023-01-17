@@ -12,6 +12,7 @@ export class FeedbackDialogComponent implements OnInit {
   }
 
   detected: boolean = false;
+  text: string = "Your feedback is being processed, please wait";
 
   ngOnInit(): void {
     this.data.isDone.subscribe(() => {
@@ -21,6 +22,8 @@ export class FeedbackDialogComponent implements OnInit {
 
   completeLoad(): void {
     //alert("val chang");
+    this.detected = true;
+    this.text = "Thanks for leaving the feedback it will be reviewed by the manager!";
     const icon = document.getElementById('ico');
     const label = document.getElementById('lab');
 
