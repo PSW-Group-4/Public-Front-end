@@ -4,7 +4,7 @@ import {TenderWinnerResponseComponent} from "../tender-winner-response/tender-wi
 import {ViewAllTendersComponent} from "../tenders/view-all-tenders/view-all-tenders.component";
 
 const routes: Routes = [
-  { path: 'tender/winner', component: TenderWinnerResponseComponent },
+  { path: 'tender/winner/:id', component: TenderWinnerResponseComponent },
   { path: 'tender', component: ViewAllTendersComponent}
 ];
 
