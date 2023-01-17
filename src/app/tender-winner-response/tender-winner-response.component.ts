@@ -21,7 +21,9 @@ export class TenderWinnerResponseComponent implements OnInit {
     this.scroller.scrollToAnchor("buttons");
   }
   approve(): void {
-    this.tenderService.approve(this.tenderId);
+    this.tenderService.approve(this.tenderId).subscribe(res => {
+      alert('Thanks for confirming!');
+    });
   }
 
   deny(): void {

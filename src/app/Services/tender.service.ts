@@ -13,7 +13,7 @@ export class TenderService {
   constructor(private http: HttpClient) { }
 
   approve(tenderId: string | null): Observable<any> {
-    return this.http.get<any>(this.apiHost + `api/Tender/${tenderId}/winner/confirm`, {headers: this.headers});
+    return this.http.post<any>(this.apiHost + `api/Tender/${tenderId}/winner/confirm`, {headers: this.headers});
   }
   getActive(): Observable<any[]> {
     return this.http.get<any[]>(this.apiHost + 'api/Tender/active', {headers: this.headers});
