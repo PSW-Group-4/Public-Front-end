@@ -3,6 +3,7 @@
         <div class="check-icon" id="ico"></div>
     </label>
     <div class="text">
-        Thanks for leaving the feedback it will be reviewed by the manager!
+        {{text}}
     </div>
+    <button mat-raised-button mat-dialog-close *ngIf="detected">Ok</button>
 </div>
