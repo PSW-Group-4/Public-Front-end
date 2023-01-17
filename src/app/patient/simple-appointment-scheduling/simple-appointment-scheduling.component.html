@@ -1,99 +1,164 @@
-
 <div class="backg">
-  <mat-stepper linear="true" fxLayout="column" fxFlex="100" fxLayoutAlign=" stretch" class="stepper">   
-
-      <mat-step [stepControl]="dateForm">
-        <form [formGroup]="dateForm" style="height: 100%;">
-          <div class="stepcont">
-
-            <div class="infos">
-              <ng-template matStepLabel>Date</ng-template>
-
-              <div class="text">Choose a date for your appointment below</div>
-              <mat-form-field appearance="fill" class="datepicker">
-                <mat-label>Date:</mat-label>
-                <input matInput type="date" formControlName="date" required>
-              </mat-form-field>
-            </div>
-
-            <div class="btns">
-              <button mat-button matStepperNext (click)="ChooseDate()" class="prog-btn">Next →</button>
-            </div>
-
-          </div>
-        </form>
-      </mat-step>
-    
-      <mat-step>
+  <mat-stepper
+    linear="true"
+    fxLayout="column"
+    fxFlex="100"
+    fxLayoutAlign=" stretch"
+    class="stepper"
+  >
+    <mat-step [stepControl]="dateForm">
+      <form [formGroup]="dateForm" style="height: 100%">
         <div class="stepcont">
-
           <div class="infos">
-            <ng-template matStepLabel>Speciality</ng-template>
+            <ng-template matStepLabel>Date</ng-template>
 
-            <div class="text">Choose specialty</div>
-            <mat-selection-list  [multiple]="false" class="list">
-              <mat-list-option (click)="selectSpecialty(i)" value="{{specialty}}"
-                *ngFor="let specialty of specialties; let i = index" class="list-item">
-                {{specialty}}
-              </mat-list-option>
-            </mat-selection-list> 
+            <div class="text">Choose a date for your appointment below</div>
+            <mat-form-field appearance="fill" class="datepicker">
+              <mat-label>Date:</mat-label>
+              <input matInput type="date" formControlName="date" required />
+            </mat-form-field>
           </div>
 
           <div class="btns">
-            <button mat-button matStepperPrevious (click)="recordGoingBackToSelection(Selection.Date)" class="prog-btn">← Back</button>
-            <button mat-button matStepperNext (click)="GetDoctorsWithSpecialty()" [disabled]="selectedSpecialtyIndex == -1" class="prog-btn">Next →</button>
+            <button
+              mat-button
+              matStepperNext
+              (click)="ChooseDate()"
+              class="prog-btn"
+            >
+              Next →
+            </button>
           </div>
-
         </div>
-      </mat-step>
-    
-      <mat-step>
-        <div class="stepcont">
+      </form>
+    </mat-step>
 
-          <div class="infos">
-            <ng-template matStepLabel>Doctor</ng-template>
-            <mat-selection-list  [multiple]="false" class="list">
-              <mat-list-option (click)="selectDoctor(i)" value="{{doctorName}}"
-                *ngFor="let doctorName of doctorNames; let i = index" class="list-item">
-                {{doctorName}}
-              </mat-list-option>
-            </mat-selection-list>
-          </div> 
+    <mat-step>
+      <div class="stepcont">
+        <div class="infos">
+          <ng-template matStepLabel>Speciality</ng-template>
 
-          <div class="btns">
-            <button mat-button matStepperPrevious (click)="recordGoingBackToSelection(Selection.Speciality)" class="prog-btn">← Back</button>
-            <button mat-button matStepperNext (click)="GetAvailableTimes()" [disabled]="selectedDoctorIndex == -1" class="prog-btn">Next →</button>
+          <div class="text">Choose specialty</div>
+          <mat-selection-list [multiple]="false" class="list">
+            <mat-list-option
+              (click)="selectSpecialty(i)"
+              value="{{ specialty }}"
+              *ngFor="let specialty of specialties; let i = index"
+              class="list-item"
+            >
+              {{ specialty }}
+            </mat-list-option>
+          </mat-selection-list>
+        </div>
+
+        <div class="btns">
+          <button
+            mat-button
+            matStepperPrevious
+            (click)="recordGoingBackToSelection(Selection.Date)"
+            class="prog-btn"
+          >
+            ← Back
+          </button>
+          <button
+            mat-button
+            matStepperNext
+            (click)="GetDoctorsWithSpecialty()"
+            [disabled]="selectedSpecialtyIndex == -1"
+            class="prog-btn"
+          >
+            Next →
+          </button>
+        </div>
+      </div>
+    </mat-step>
+
+    <mat-step>
+      <div class="stepcont">
+        <div class="infos">
+          <ng-template matStepLabel>Doctor</ng-template>
+          <mat-selection-list [multiple]="false" class="list">
+            <mat-list-option
+              (click)="selectDoctor(i)"
+              value="{{ doctorName }}"
+              *ngFor="let doctorName of doctorNames; let i = index"
+              class="list-item"
+            >
+              {{ doctorName }}
+            </mat-list-option>
+          </mat-selection-list>
+        </div>
+
+        <div class="btns">
+          <button
+            mat-button
+            matStepperPrevious
+            (click)="recordGoingBackToSelection(Selection.Speciality)"
+            class="prog-btn"
+          >
+            ← Back
+          </button>
+          <button
+            mat-button
+            matStepperNext
+            (click)="GetAvailableTimes()"
+            [disabled]="selectedDoctorIndex == -1"
+            class="prog-btn"
+          >
+            Next →
+          </button>
+        </div>
+      </div>
+    </mat-step>
+
+    <mat-step>
+      <div class="stepcont">
+        <div class="infos">
+          <ng-template matStepLabel>Available times</ng-template>
+          <div class="text" *ngIf="availableTimesString.length <= 0">
+            No available times!
           </div>
-
-        </div>
-      </mat-step>
-    
-      <mat-step>
-        <div class="stepcont">
-
-          <div class="infos">
-            <ng-template matStepLabel>Available times</ng-template>
-            <div class="text" *ngIf="availableTimesString.length <= 0">No available times!</div>
-            <div *ngIf="appointmentScheduled">
-              <div class="text">Appointment scheduled!</div>
-              <button routerLink="info" mat-button >Go back to profile</button>
-            </div>
-            <mat-selection-list  [multiple]="false" class="list" *ngIf="!appointmentScheduled">
-              <mat-list-option (click)="selectTime(i)" value="{{availableTime}}"
-                *ngFor="let availableTime of availableTimesString; let i = index" class="list-item">
-                {{availableTime}}
-              </mat-list-option>
-            </mat-selection-list>
+          <div *ngIf="appointmentScheduled">
+            <div class="text">Appointment scheduled!</div>
+            <button routerLink="info" mat-button>Go back to profile</button>
           </div>
-
-           <div class="btns" *ngIf="!appointmentScheduled">
-             <button mat-button matStepperPrevious (click)="recordGoingBackToSelection(Selection.Doctor)" class="prog-btn">← Back</button>
-             <button mat-button (click)="scheduleAppointment()" [disabled]="selectedTimeIndex == -1 || availableTimesString.length <= 0" class="prog-btn">Schedule ✓</button>     
-            </div>
-
-            
-
+          <mat-selection-list
+            [multiple]="false"
+            class="list"
+            *ngIf="!appointmentScheduled"
+          >
+            <mat-list-option
+              (click)="selectTime(i)"
+              value="{{ availableTime }}"
+              *ngFor="let availableTime of availableTimesString; let i = index"
+              class="list-item"
+            >
+              {{ availableTime }}
+            </mat-list-option>
+          </mat-selection-list>
         </div>
-      </mat-step>
+
+        <div class="btns" *ngIf="!appointmentScheduled">
+          <button
+            mat-button
+            matStepperPrevious
+            (click)="recordGoingBackToSelection(Selection.Doctor)"
+            class="prog-btn"
+          >
+            ← Back
+          </button>
+          <button
+            mat-button
+            (click)="scheduleAppointment()"
+            [disabled]="
+              selectedTimeIndex == -1 || availableTimesString.length <= 0
+            "
+            class="prog-btn"
+          >
+            Schedule ✓
+          </button>
+        </div>
+      </div>
+    </mat-step>
   </mat-stepper>
 </div>
