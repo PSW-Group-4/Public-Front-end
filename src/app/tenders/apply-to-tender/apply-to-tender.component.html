@@ -5,12 +5,14 @@
             <input matInput type ="number" [(ngModel)]="price">
         <br>
         <mat-dialog-actions>
-        <button mat-stroked-button  (click)="apply()" [disabled]="price <= 0">
-            Submit
+        <div class="buttons">
+          <button class="button" (click)="apply()" [disabled]="price <= 0">
+          Submit
         </button>
-        <button mat-stroked-button  mat-dialog-close="cancel">
+          <button mat-dialog-close="cancel">
             Cancel
-        </button>
+          </button>
+        </div>
          </mat-dialog-actions>
     </div>
 </div>

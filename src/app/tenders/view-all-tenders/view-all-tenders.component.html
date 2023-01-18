@@ -5,8 +5,8 @@
         <div>
           <div *ngFor="let k of i.blood">
             <h2>Tender</h2>
-            <small>Lasts until: {{i.deadline}}</small>
-            <br>
+            <small *ngIf="i.deadline !== null">Lasts until: {{i.deadline}}</small>
+            <br *ngIf="i.deadline !== null">
             <div>
               <br>
               <p *ngIf="k.bloodType?.bloodGroup === 0"><b>Blood type</b>: O </p>
