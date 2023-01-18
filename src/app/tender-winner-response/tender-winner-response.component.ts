@@ -1,7 +1,7 @@
 import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { TenderService } from '../Services/tender.service';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-tender-winner-response',
@@ -10,7 +10,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class TenderWinnerResponseComponent implements OnInit {
 
-  constructor(private tenderService: TenderService, private scroller: ViewportScroller, private route: ActivatedRoute ) { }
+  constructor(private tenderService: TenderService, private scroller: ViewportScroller, private route: ActivatedRoute, private router: Router ) { }
   public tenderId: string | null = "";
   ngOnInit(): void {
     this.tenderId = this.route.snapshot.paramMap.get('id');
@@ -23,10 +23,12 @@ export class TenderWinnerResponseComponent implements OnInit {
   approve(): void {
     this.tenderService.approve(this.tenderId).subscribe(res => {
       alert('Thanks for confirming!');
+      this.router.navigate(['bloodBank']);
     });
   }
 
   deny(): void {
     this.tenderService.deny(this.tenderId);
+
   }
 }
